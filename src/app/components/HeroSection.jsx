@@ -38,7 +38,7 @@ const HeroSection = () => {
                         Hire Me
                     </button>
                     <button className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800 text-white mt-3">
-                        <span className="flex bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
+                        <span className="flex justify-center bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
                             Download CV
                             <ArrowTopRightOnSquareIcon className="rounded-full ml-1 w-5 h-5"/>
                         </span>
