@@ -23,6 +23,7 @@ const navLinks = [
 const NavBar = () => {
 
     const [navBarOpen, setNavBarOpen] = useState(false);
+    const [isMediumScreen, setIsMediumScreen] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -37,6 +38,19 @@ const NavBar = () => {
             window.removeEventListener('resize', handleResize);
         };
     }, [navBarOpen]);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMediumScreen(window.innerWidth > 768);
+        };
+    
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+    
+        return () => {
+            window.removeEventListener('resize', checkScreenSize);
+        };
+    }, []);    
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-10 bg-[#121212]">
@@ -71,9 +85,14 @@ const NavBar = () => {
                         }
                     </ul>
                 </div>
-                <Link href={"/"} className="text-2xl md:text-5xl text-white font-semibold">
+                <Link href={"/"} className="text-4xl md:text-5xl text-white font-semibold">
                     IAN
                 </Link>
+                {!isMediumScreen && (
+                    <a href="/hire-me" className="flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition duration-300 ease-in-out h-12 w-12">
+                         <span className="text-sm font-bold text-center leading-tight">Hire Me</span> {/* Adjust text size as needed */}
+                     </a>              
+                )}
             </div>
             {
                 navBarOpen ? <MenuOverlay links={navLinks} /> : null
