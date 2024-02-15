@@ -104,7 +104,7 @@ const NavBar = () => {
                                         transform: `rotate(${-index * 360 / circleText.length}deg) translateY(34px)`,
                                         transformOrigin: "0% 0%"
                                     }}
-                                    className="absolute text-[8px] text-white"
+                                    className="absolute text-[8px] text-white font-mono"
                                 >
                                     {char}
                                 </span>
