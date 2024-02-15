@@ -31,3 +31,8 @@ body {
     text-wrap: balance;
   }
 }
+
+@font-face {
+  font-family: 'zolasixx';
+  src: url('/fonts/Zolasixx-Regular.otf') format('opentype');
+}
