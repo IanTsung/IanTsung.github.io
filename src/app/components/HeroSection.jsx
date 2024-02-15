@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { TypeAnimation } from 'react-type-animation';
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 
 const HeroSection = () => {
   return (
@@ -34,13 +34,10 @@ const HeroSection = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </p>
                 <div>
-                    <button className="px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-200 text-white">
-                        Hire Me
-                    </button>
                     <button className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 hover:bg-slate-800 text-white mt-3">
                         <span className="flex justify-center bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
                             Download CV
-                            <ArrowTopRightOnSquareIcon className="rounded-full ml-1 w-5 h-5"/>
+                            <ArrowDownTrayIcon className="rounded-full ml-1 w-5 h-5"/>
                         </span>
                     </button>
                 </div>
