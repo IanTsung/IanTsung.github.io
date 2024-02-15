@@ -1,6 +1,7 @@
 "use client";
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { gsap } from "gsap";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import NavLink from './NavLink';
 import MenuOverlay from './MenuOverlay';
@@ -20,16 +21,21 @@ const navLinks = [
     }
 ]
 
+const checkIsMediumScreen = () => window.innerWidth > 768;
+
 const NavBar = () => {
 
+    const buttonRef = useRef(null);
+    const circleTextRef = useRef(null);
     const [navBarOpen, setNavBarOpen] = useState(false);
-    const [isMediumScreen, setIsMediumScreen] = useState(false);
+    const [isMediumScreen, setIsMediumScreen] = useState(checkIsMediumScreen());
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth >= 768 && navBarOpen) {
+            if (checkIsMediumScreen() && navBarOpen) {
                 setNavBarOpen(false);
             }
+            setIsMediumScreen(checkIsMediumScreen());
         };
 
         window.addEventListener('resize', handleResize);
@@ -40,17 +46,17 @@ const NavBar = () => {
     }, [navBarOpen]);
 
     useEffect(() => {
-        const checkScreenSize = () => {
-            setIsMediumScreen(window.innerWidth > 768);
-        };
-    
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-    
-        return () => {
-            window.removeEventListener('resize', checkScreenSize);
-        };
-    }, []);    
+        if (!isMediumScreen && circleTextRef.current) {
+            gsap.to(circleTextRef.current, {
+                rotation: 360,
+                repeat: -1,
+                duration: 20,
+                ease: "linear",   
+            });
+        }
+    }, [isMediumScreen]);
+
+    const circleText = "Data Scientist  Web Developer  Mobile Developer  ";
 
     return (
         <nav className="fixed top-0 left-0 right-0 z-10 bg-[#121212]">
@@ -89,9 +95,25 @@ const NavBar = () => {
                     IAN
                 </Link>
                 {!isMediumScreen && (
-                    <a href="/hire-me" className="flex items-center justify-center bg-white text-black rounded-full hover:bg-gray-200 transition duration-300 ease-in-out h-12 w-12">
-                         <span className="text-sm font-bold text-center leading-tight">Hire Me</span> {/* Adjust text size as needed */}
-                     </a>              
+                    <div className="flex items-center justify-center py-5 relative">
+                        <div ref={circleTextRef} className="absolute">
+                            {circleText.split("").map((char, index) => (
+                                <span
+                                    key={index}
+                                    style={{ 
+                                        transform: `rotate(${-index * 360 / circleText.length}deg) translateY(34px)`,
+                                        transformOrigin: "0% 0%"
+                                    }}
+                                    className="absolute text-[8px] text-white"
+                                >
+                                    {char}
+                                </span>
+                            ))}
+                        </div>
+                        <a href="/hire-me" ref={buttonRef} className="z-10 bg-white text-black rounded-full hover:bg-gray-200 transition duration-300 ease-in-out flex items-center justify-center w-16 h-16">
+                            <span className="text-md font-bold text-center leading-tight">Hire Me</span>
+                        </a>
+                    </div>
                 )}
             </div>
             {
