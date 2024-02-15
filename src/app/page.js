@@ -1,6 +1,7 @@
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
 import AboutSection from "./components/AboutSection";
+import HireMeButton from "./components/HireMeButton";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
       </div>
+      <HireMeButton />
     </main>
   );
 }
