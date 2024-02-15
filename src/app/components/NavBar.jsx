@@ -1,5 +1,6 @@
 "use client";
 import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import NavLink from './NavLink';
@@ -71,9 +72,27 @@ const NavBar = () => {
                         }
                     </ul>
                 </div>
-                <Link href={"/"} className="text-4xl md:text-5xl text-white font-semibold">
+                <Link href={"/"} className="text-4xl lg:text-5xl xl:text-6xl text-white font-semibold">
                     IAN
                 </Link>
+                <div className="flex space-x-4 sm:space-x-8 md:space-x-12">
+                    <a href="https://github.com/IanTsung1999" style={{ filter: "invert(100%) brightness(2)" }}>
+                        <Image 
+                            src="github.svg"
+                            alt="github icon"
+                            width={25}
+                            height={25}
+                        />
+                    </a>
+                    <a href="https://www.linkedin.com/in/zhaoyancong/">
+                        <Image 
+                            src="linkedin.svg"
+                            alt="linkedin icon"
+                            width={25}
+                            height={25}
+                        />
+                    </a>
+                </div>
             </div>
             {
                 navBarOpen ? <MenuOverlay links={navLinks} /> : null
