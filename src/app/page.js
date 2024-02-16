@@ -13,8 +13,10 @@ export default function Home() {
       <NavBar />
       <div className="container mt-24 mx-auto px-12 py-4">
         <HeroSection />
-        <AchievementsSection />
-        <AboutSection />
+        <div className="flex flex-col xl:flex-row">
+          <AboutSection />
+          <AchievementsSection />
+        </div>
         <ProjectsSection />
         <EmailSection />
       </div>
