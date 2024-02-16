@@ -40,8 +40,8 @@ const NavBar = () => {
     }, [navBarOpen]);
 
     return (
-        <nav className="fixed top-0 left-0 right-0 z-50 bg-[#121212]">
-            <div className="flex flex-wrap items-center justify-between mx-auto px-6 py-4 md:px-20 md:py-6">
+        <nav className="fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 bg-[#121212]">
+            <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-6 py-4 md:px-20 md:py-6">
                 <div className="mobile-menu block md:hidden">
                     {
                         !navBarOpen ? (
