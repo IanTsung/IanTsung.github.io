@@ -36,7 +36,7 @@ const HireMeButton = () => {
 						</span>
 					))}
 				</div>
-				<a href="/hire-me" ref={buttonRef} className="bg-slate-100 text-black rounded-full hover:bg-gray-200 transition duration-300 ease-in-out flex items-center justify-center w-16 h-16">
+				<a href="mailto:congzhaoyan1999@gmail.com" ref={buttonRef} className="bg-slate-100 text-black rounded-full hover:bg-gray-200 transition duration-300 ease-in-out flex items-center justify-center w-16 h-16">
 					<span className="text-lg font-bold font-mono text-center leading-tight">HIRE ME</span>
 				</a>
 			</div>
