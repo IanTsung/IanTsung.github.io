@@ -1,6 +1,8 @@
 "use client";
 import React, { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Link from 'next/link';
 import Image from 'next/image';
 import GithubIcon from "../../../public/github.svg";
@@ -24,9 +26,27 @@ const EmailSection = () => {
 				)
 			.then(
 				(result) => {
+					toast.success("Thank you for reaching out!", {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: true,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+					});
 					console.log('SUCCESS!', result.text);
 				},
 				(error) => {
+					toast.error("An error occurred sending your message, please try again", {
+						position: "top-center",
+						autoClose: 5000,
+						hideProgressBar: true,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+					});
 					console.log('FAILED...', error.text);
 				}
 			);
@@ -124,6 +144,18 @@ const EmailSection = () => {
 					</button>
 				</form>
 			</div>
+			<ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+      	draggable
+        pauseOnHover
+        theme="light"
+      />
     </section>
   )
 }
