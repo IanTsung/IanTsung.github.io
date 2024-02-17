@@ -40,12 +40,12 @@ const NavBar = () => {
 	}, [navBarOpen]);
 
 	const scrollToSection = (e, sectionId) => {
-    e.preventDefault(); // Prevent default anchor link behavior
-    const section = document.querySelector(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
+		e.preventDefault();
+		const section = document.querySelector(sectionId);
+		if (section) {
+			section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	};
 
 	return (
 		<nav className="fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 bg-[#121212]">
@@ -74,7 +74,7 @@ const NavBar = () => {
 						{
 							navLinks.map((link, index) => (
 								<li key={index}>
-									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)}/>
+									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} />
 								</li>
 							))
 						}
