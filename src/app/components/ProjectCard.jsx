@@ -4,7 +4,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
 const ProjectCard = ({ imgUrl, title, description, gitUrl }) => {
   return (
-    <div className="relative">
+    <div className="relative hover:scale-105 duration-500">
       <div
         className="h-32 sm:h-52 xl:h-72 rounded-t-xl relative group z-10"
         style={{ background: `url(${imgUrl})`, backgroundSize: "cover" }}

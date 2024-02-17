@@ -12,7 +12,23 @@ const projectsData = [
 		description: "a weather application using React.js",
 		image: "./images/projects/weather-app.png",
 		tag: ["All", "Web", "Mobile"]
-	}
+	},
+	{
+		id: 2,
+		title: "React Weather App",
+		gitUrl: "https://github.com/IanTsung1999/weather-app",
+		description: "a weather application using React.js",
+		image: "./images/projects/weather-app.png",
+		tag: ["All", "Web", "Mobile"]
+	},
+	{
+		id: 3,
+		title: "React Weather App",
+		gitUrl: "https://github.com/IanTsung1999/weather-app",
+		description: "a weather application using React.js",
+		image: "./images/projects/weather-app.png",
+		tag: ["All", "Web", "Mobile"]
+	},
 ]
 
 const ProjectsSection = () => {
@@ -58,7 +74,7 @@ const ProjectsSection = () => {
 			</div>
 			<ul
 				ref={ref}
-				className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12"
+				className="grid md:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12"
 			>
 				{
 					filteredProjects.map((project, index) =>
