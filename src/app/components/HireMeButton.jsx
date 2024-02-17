@@ -20,7 +20,7 @@ const HireMeButton = () => {
 	}, []);
 
 	return (
-		<div className="fixed bottom-5 right-5 flex items-center justify-center z-50">
+		<div className="fixed bottom-5 right-5 sm:bottom-10 sm:right-10 flex items-center justify-center z-50">
 			<div className="relative flex justify-center items-center">
 				<div ref={circleTextRef} className="absolute">
 					{circleText.split("").map((char, index) => (
