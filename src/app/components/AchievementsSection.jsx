@@ -1,6 +1,6 @@
 "use client";
 import React from 'react';
-import dynamic from 'next/dynamic';
+import AnimatedNumbers from "react-animated-numbers"
 
 const achievementsList = [
   {
@@ -19,13 +19,6 @@ const achievementsList = [
   }
 ]
 
-const AnimatedNumbers = dynamic(
-  () => {
-    return import("react-animated-numbers");
-  },
-  { ssr: false }
-);
-
 const AchievementsSection = () => {
   return (
     <div className="px-2 py-8 sm:py-4 xl:px-8">
@@ -36,21 +29,17 @@ const AchievementsSection = () => {
 							<div
 								key={index}
 								className="flex flex-col items-start justify-center sm:mx-4"
-				
 							>
-								<h2 className="flex flex-row gap-1 text-white text-4xl sm:text-5xl xl:text-7xl font-bold">
+								<h2 className="flex flex-row sm:gap-2 text-white text-4xl sm:text-5xl xl:text-7xl font-bold">
 									<AnimatedNumbers
                     includeComma
                     animateToNumber={achievement.value}
                     locale="en-US"
                     className="text-white text-4xl sm:text-5xl xl:text-7xl font-bold"
-                    configs={(_, index) => {
-                      return {
-                        mass: 1,
-                        friction: 100,
-                        tensions: 140 * (index + 1),
-                      };
-                    }}
+                    transitions={() => ({
+                      type: "spring",
+                      duration: (index * 0.75) + 1.5,
+                    })}
                   />
                   {achievement.postfix}
 								</h2>
