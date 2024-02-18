@@ -25,10 +25,10 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 
 	const [navBarOpen, setNavBarOpen] = useState(false);
 
-	const switchBorderColor = darkMode? "border-white" : "border-slate-800";
-	const bgColor = darkMode? "bg-[#121212]" : "bg-slate-50";
-	const logoColor = darkMode? "text-white" : "text-black";
-	const iconColor = darkMode? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
+	const switchBorderColor = darkMode ? "border-white" : "border-slate-800";
+	const bgColor = darkMode ? "bg-[#121212]" : "bg-slate-50";
+	const logoColor = darkMode ? "text-white" : "text-black";
+	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
 	const buttonColor = darkMode ? "border-slate-200 text-slate-200 hover:text-white hover:border-white" : "border-slate-500 text-slate-500 hover:text-black hover:border-black"
 
 	useEffect(() => {
@@ -80,7 +80,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 						{
 							navLinks.map((link, index) => (
 								<li key={index}>
-									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} darkMode={darkMode}/>
+									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} darkMode={darkMode} />
 								</li>
 							))
 						}
@@ -106,9 +106,14 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 							height={25}
 						/>
 					</Link>
-					<button onClick={toggleDarkMode} className={`rounded-full border-2 p-1 transition-colors duration-300 ease-in-out ${switchBorderColor}`}>
-            {darkMode ? <MoonIcon className="w-4 h-4 text-white" /> : <SunIcon className="w-4 h-4 text-slate-800" />}
-          </button>
+					<button onClick={toggleDarkMode} className={`relative rounded-full border-2 p-1 transition-colors duration-500 ease-in-out ${switchBorderColor} flex justify-center items-center w-6 h-6`}>
+						<div className="absolute flex transition-opacity duration-500 ease-in-out" style={{ opacity: darkMode ? 1 : 0 }}>
+							<MoonIcon className="w-4 h-4 text-white" />
+						</div>
+						<div className="absolute flex transition-opacity duration-500 ease-in-out" style={{ opacity: !darkMode ? 1 : 0 }}>
+							<SunIcon className="w-4 h-4 text-slate-800" />
+						</div>
+					</button>
 				</div>
 			</div>
 			{
