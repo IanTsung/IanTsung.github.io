@@ -4,7 +4,11 @@ import { gsap } from "gsap";
 
 const circleText = "Data Scientist  Web Developer  Mobile Developer  ";
 
-const HireMeButton = () => {
+const HireMeButton = ({ darkMode }) => {
+
+	const circularColor = darkMode ? "text-white" : "text-black";
+	const bgColor = darkMode ? "bg-slate-100 text-black hover:bg-gray-200" : "bg-black text-white hover:bg-gray-700";
+
 	const buttonRef = useRef(null);
 	const circleTextRef = useRef(null);
 
@@ -30,13 +34,13 @@ const HireMeButton = () => {
 								transform: `rotate(${-index * 360 / circleText.length}deg) translateY(34px)`,
 								transformOrigin: "0% 0%"
 							}}
-							className="absolute text-[8px] text-white font-mono"
+							className={`absolute text-[8px] font-mono ${circularColor}`}
 						>
 							{char}
 						</span>
 					))}
 				</div>
-				<a href="mailto:congzhaoyan1999@gmail.com" ref={buttonRef} className="bg-slate-100 text-black rounded-full hover:bg-gray-200 transition duration-300 ease-in-out flex items-center justify-center w-16 h-16">
+				<a href="mailto:congzhaoyan1999@gmail.com" ref={buttonRef} className={`rounded-full transition duration-300 ease-in-out flex items-center justify-center w-16 h-16 ${bgColor}`}>
 					<span className="text-lg font-bold font-mono text-center leading-tight">HIRE ME</span>
 				</a>
 			</div>

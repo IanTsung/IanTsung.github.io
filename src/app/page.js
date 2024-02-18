@@ -33,7 +33,7 @@ export default function Home() {
         <EmailSection />
       </div>
       <Footer />
-      <HireMeButton />
+      <HireMeButton darkMode={darkMode}/>
     </main>
   );
 }
