@@ -39,7 +39,9 @@ const TAB_DATA = [
 	}
 ]
 
-const AboutSection = () => {
+const AboutSection = ({ darkMode }) => {
+
+	const textColor = darkMode ? "text-white" : "text-slate-800";
 
 	const [tab, setTab] = useState("skills");
 	const [isPending, startTransition] = useTransition();
@@ -51,8 +53,8 @@ const AboutSection = () => {
 	}
 
 	return (
-		<section id="about" className="text-white">
-			<div className="md:grid lg:grid-cols-2 gap-8 xl:gap-16 items-center py-8 px-4 sm:py-16 xl:px-0">
+		<section id="about" className={`${textColor}`}>
+			<div className="md:grid lg:grid-cols-2 gap-8 xl:gap-16 items-start py-8 px-4 sm:py-16 xl:px-0">
 				<Image
 					src="/images/about-image.png"
 					className="rounded-2xl"
@@ -61,7 +63,7 @@ const AboutSection = () => {
 					height={500}
 				/>
 				<div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-					<h2 className="text-4xl font-bold text-white mb-4">
+					<h2 className={`text-4xl font-bold mb-4 ${textColor}`}>
 						About Me
 					</h2>
 					<p className="text-base lg:text-lg ">
@@ -75,6 +77,7 @@ const AboutSection = () => {
 						<TabButton
 							selectTab={() => handleTabChange("skills")}
 							active={tab === "skills"}
+							darkMode={darkMode}
 						>
 							{" "}
 							Skills{" "}
@@ -82,6 +85,7 @@ const AboutSection = () => {
 						<TabButton
 							selectTab={() => handleTabChange("education")}
 							active={tab === "education"}
+							darkMode={darkMode}
 						>
 							{" "}
 							Education{" "}
@@ -89,6 +93,7 @@ const AboutSection = () => {
 						<TabButton
 							selectTab={() => handleTabChange("certifications")}
 							active={tab === "certifications"}
+							darkMode={darkMode}
 						>
 							{" "}
 							Certifications{" "}

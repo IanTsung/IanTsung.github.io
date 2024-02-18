@@ -6,10 +6,10 @@ const variants = {
 	active: { width: "calc(100% - 0.75rem)" }
 }
 
-const TabButton = ({ active, selectTab, children }) => {
+const TabButton = ({ active, selectTab, children, darkMode }) => {
 
 	const buttonClasses = active
-		? "text-white"
+		? `${darkMode ? "text-white" : "text-black"}`
 		: "text-[#ADB7BE]";
 
 	return (

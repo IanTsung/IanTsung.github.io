@@ -11,7 +11,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
 
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -26,8 +26,8 @@ export default function Home() {
       <div className="container mt-24 mx-auto px-12 py-4">
         <HeroSection darkMode={darkMode}/>
         <div className="flex flex-col xl:flex-row">
-          <AboutSection />
-          <AchievementsSection />
+          <AboutSection darkMode={darkMode}/>
+          <AchievementsSection darkMode={darkMode}/>
         </div>
         <ProjectsSection />
         <EmailSection />
