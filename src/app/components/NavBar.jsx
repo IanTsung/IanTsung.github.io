@@ -25,6 +25,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 
 	const [navBarOpen, setNavBarOpen] = useState(false);
 
+	const switchBorderColor = darkMode? "border-white" : "border-slate-800";
 	const bgColor = darkMode? "bg-[#121212]" : "bg-slate-50";
 	const logoColor = darkMode? "text-white" : "text-black";
 	const iconColor = darkMode? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
@@ -105,8 +106,8 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 							height={25}
 						/>
 					</Link>
-					<button onClick={toggleDarkMode} className="rounded-full">
-            {darkMode ? <SunIcon className="w-6 h-6 text-white" /> : <MoonIcon className="w-6 h-6 text-black" />}
+					<button onClick={toggleDarkMode} className={`rounded-full border-2 p-1 transition-colors duration-300 ease-in-out ${switchBorderColor}`}>
+            {darkMode ? <MoonIcon className="w-4 h-4 text-white" /> : <SunIcon className="w-4 h-4 text-slate-800" />}
           </button>
 				</div>
 			</div>
