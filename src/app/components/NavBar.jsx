@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/solid";
 import NavLink from './NavLink';
 import MenuOverlay from './MenuOverlay';
 
@@ -21,9 +21,14 @@ const navLinks = [
 	}
 ]
 
-const NavBar = () => {
+const NavBar = ({ darkMode, toggleDarkMode }) => {
 
 	const [navBarOpen, setNavBarOpen] = useState(false);
+
+	const bgColor = darkMode? "bg-[#121212]" : "bg-white";
+	const logoColor = darkMode? "text-white" : "text-black";
+	const iconColor = darkMode? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
+	const buttonColor = darkMode ? "border-slate-200 text-slate-200 hover:text-white hover:border-white" : "border-slate-500 text-slate-500 hover:text-black hover:border-black"
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -48,21 +53,21 @@ const NavBar = () => {
 	};
 
 	return (
-		<nav className="fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 bg-[#121212]">
+		<nav className={`fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 ${bgColor}`}>
 			<div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-6 py-4 md:px-20 md:py-6">
 				<div className="mobile-menu block md:hidden">
 					{
 						!navBarOpen ? (
 							<button
 								onClick={() => setNavBarOpen(true)}
-								className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+								className={`flex items-center px-3 py-2 border rounded ${buttonColor}`}
 							>
 								<Bars3Icon className="w-5 h-5" />
 							</button>
 						) : (
 							<button
 								onClick={() => setNavBarOpen(false)}
-								className="flex items-center px-3 py-2 border rounded border-slate-200 text-slate-200 hover:text-white hover:border-white"
+								className={`flex items-center px-3 py-2 border rounded ${buttonColor}`}
 							>
 								<XMarkIcon className="w-5 h-5" />
 							</button>
@@ -74,17 +79,17 @@ const NavBar = () => {
 						{
 							navLinks.map((link, index) => (
 								<li key={index}>
-									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} />
+									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} darkMode={darkMode}/>
 								</li>
 							))
 						}
 					</ul>
 				</div>
-				<Link href={"/"} className="text-4xl lg:text-5xl xl:text-6xl text-white font-semibold font-zolasixx">
+				<Link href={"/"} className={`text-4xl lg:text-5xl xl:text-6xl ${logoColor} font-semibold font-zolasixx`}>
 					IAN
 				</Link>
 				<div className="flex space-x-4 sm:space-x-8 md:space-x-12">
-					<Link href="https://github.com/IanTsung1999" style={{ filter: "invert(100%) brightness(2)" }}>
+					<Link href="https://github.com/IanTsung1999" style={{ filter: `${iconColor}` }}>
 						<Image
 							src="github.svg"
 							alt="github icon"
@@ -100,6 +105,9 @@ const NavBar = () => {
 							height={25}
 						/>
 					</Link>
+					<button onClick={toggleDarkMode} className="rounded-full">
+            {darkMode ? <SunIcon className="w-6 h-6 text-white" /> : <MoonIcon className="w-6 h-6 text-black" />}
+          </button>
 				</div>
 			</div>
 			{
