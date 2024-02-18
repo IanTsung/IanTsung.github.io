@@ -18,13 +18,13 @@ export default function Home() {
     document.body.classList.toggle('dark');
   };
 
-  const bgColorClass = darkMode ? 'bg-[#121212]' : 'bg-white';
+  const bgColorClass = darkMode ? 'bg-[#121212]' : 'bg-slate-50';
 
   return (
     <main className={`flex min-h-screen flex-col ${bgColorClass}`}>
       <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
       <div className="container mt-24 mx-auto px-12 py-4">
-        <HeroSection />
+        <HeroSection darkMode={darkMode}/>
         <div className="flex flex-col xl:flex-row">
           <AboutSection />
           <AchievementsSection />
