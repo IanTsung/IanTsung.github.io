@@ -31,11 +31,13 @@ const projectsData = [
 	},
 ]
 
-const ProjectsSection = () => {
+const ProjectsSection = ({ darkMode }) => {
 
 	const [tag, setTag] = useState("All");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
+
+	const textColor = darkMode ? "text-white" : "text-slate-800";
 
 	const handleTagChange = (newTag) => {
 		setTag(newTag);
@@ -52,24 +54,27 @@ const ProjectsSection = () => {
 
 	return (
 		<section id="projects">
-			<h2 className="text-center text-4xl font-bold text-white mt-4 mb-12">
+			<h2 className={`text-center text-4xl font-bold mt-4 mb-12 ${textColor}`}>
 				Projects
 			</h2>
-			<div className="text-white flex flex-row justify-center items-center gap-4 sm:gap-6 py-6 mb-12">
+			<div className={`flex flex-row justify-center items-center gap-4 sm:gap-6 py-6 mb-12 ${textColor}`}>
 				<ProjectTag
 					onClick={handleTagChange}
 					tag="All"
 					isSelected={tag === "All"}
+					darkMode={darkMode}
 				/>
 				<ProjectTag
 					onClick={handleTagChange}
 					tag="Web"
 					isSelected={tag === "Web"}
+					darkMode={darkMode}
 				/>
 				<ProjectTag
 					onClick={handleTagChange}
 					tag="Mobile"
 					isSelected={tag === "Mobile"}
+					darkMode={darkMode}
 				/>
 			</div>
 			<ul
@@ -91,6 +96,7 @@ const ProjectsSection = () => {
 								imgUrl={project.image}
 								title={project.title}
 								description={project.description}
+								darkMode={darkMode}
 							/>
 						</motion.li>
 					)

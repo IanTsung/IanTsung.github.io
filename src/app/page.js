@@ -29,7 +29,7 @@ export default function Home() {
           <AboutSection darkMode={darkMode}/>
           <AchievementsSection darkMode={darkMode}/>
         </div>
-        <ProjectsSection />
+        <ProjectsSection darkMode={darkMode}/>
         <EmailSection />
       </div>
       <Footer />
