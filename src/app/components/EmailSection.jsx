@@ -8,14 +8,12 @@ import Image from 'next/image';
 import GithubIcon from "../../../public/github.svg";
 import LinkedInIcon from "../../../public/linkedin.svg";
 
-const EmailSection = () => {
+const EmailSection = ({ darkMode }) => {
 
 	const form = useRef();
 
 	const sendEmail = (e) => {
 		e.preventDefault();
-
-		console.log(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
 
 		emailjs
 			.sendForm(
@@ -52,10 +50,14 @@ const EmailSection = () => {
 			);
 	};
 
+	const textColor = darkMode ? "text-white": "text-slate-800";
+	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
+	const barColor = darkMode ? "bg-[#18191E]": "bg-gray-200";
+
 	return (
 		<section id="contact" className="grid md:grid-cols-2 my-12 py-24 gap-4 relative">
 			<div className="z-10">
-				<h5 className="text-xl font-bold text-white my-2">
+				<h5 className={`text-xl font-bold my-2 ${textColor}`}>
 					Let's Connect
 				</h5>
 				<p className="text-[#ADB7BE] mb-4 max-w-md">
@@ -65,7 +67,7 @@ const EmailSection = () => {
 					to get back to you!
 				</p>
 				<div className="socials flex flex-row gap-6">
-					<Link href="https://github.com/IanTsung1999" style={{ filter: "invert(100%) brightness(2)" }}>
+					<Link href="https://github.com/IanTsung1999" style={{ filter: `${iconColor}` }}>
 						<Image
 							src={GithubIcon}
 							alt="github icon"
@@ -86,7 +88,7 @@ const EmailSection = () => {
 			<div className="z-10">
 				<form ref={form} onSubmit={sendEmail} className="flex flex-col">
 					<div className="mb-6">
-						<label htmlFor="name" className="text-white block mb-2 text-sm font-medium">
+						<label htmlFor="name" className={`block mb-2 text-sm font-medium ${textColor}`}>
 							Your Name
 						</label>
 						<input
@@ -94,11 +96,11 @@ const EmailSection = () => {
 							name="from_name"
 							id="name"
 							placeholder="John Doe"
-							className="block w-full p-2.5 text-gray-100 text-sm rounded-lg bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9]"
+							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
 						/>
 					</div>
 					<div className="mb-6">
-						<label htmlFor="email" className="text-white block mb-2 text-sm font-medium">
+						<label htmlFor="email" className={`block mb-2 text-sm font-medium ${textColor}`}>
 							Your Email
 						</label>
 						<input
@@ -106,24 +108,24 @@ const EmailSection = () => {
 							name="from_email"
 							id="email"
 							placeholder="JohnDoe@abc.com"
-							className="block w-full p-2.5 text-gray-100 text-sm rounded-lg bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9]"
+							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
 						/>
 					</div>
 					<div className="mb-6">
-						<label htmlFor="subject" className="text-white block mb-2 text-sm font-medium">
+						<label htmlFor="subject" className={`block mb-2 text-sm font-medium ${textColor}`}>
 							Subject
 						</label>
 						<input
 							type="text"
 							id="subject"
 							placeholder="Just to say hi"
-							className="block w-full p-2.5 text-gray-100 text-sm rounded-lg bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9]"
+							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
 						/>
 					</div>
 					<div className="mb-12">
 						<label
 							htmlFor="message"
-							className="text-white block text-sm mb-2 font-medium"
+							className={`block mb-2 text-sm font-medium ${textColor}`}
 						>
 							Message
 						</label>
@@ -131,7 +133,7 @@ const EmailSection = () => {
 							name="message"
 							id="message"
 							rows={5}
-							className="block w-full p-2.5 text-gray-100 text-sm rounded-lg bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9]"
+							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
 							placeholder="Hi Ian, I'd like to talk about..."
 						/>
 					</div>

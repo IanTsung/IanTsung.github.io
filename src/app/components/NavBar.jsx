@@ -25,7 +25,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 
 	const [navBarOpen, setNavBarOpen] = useState(false);
 
-	const switchBorderColor = darkMode ? "border-white" : "border-slate-800";
+	const switchBorderColor = darkMode ? "border-white" : "border-slate-700";
 	const bgColor = darkMode ? "bg-[#121212]" : "bg-slate-50";
 	const logoColor = darkMode ? "text-white" : "text-black";
 	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
