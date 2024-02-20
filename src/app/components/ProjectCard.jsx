@@ -10,7 +10,7 @@ const ProjectCard = ({ imgUrl, title, description, gitUrl, darkMode }) => {
   return (
     <div className="relative hover:scale-105 duration-500">
       <div
-        className="h-32 sm:h-52 xl:h-72 rounded-t-xl relative group z-10"
+        className="h-48 xs:h-56 sm:h-64 xl:h-72 rounded-t-xl relative group z-10"
         style={{ background: `url(${imgUrl})`, backgroundSize: "cover" }}
       ></div>
       <div className={`relative text-white rounded-b-xl py-6 px-4 z-10 ${bgColor}`}>
