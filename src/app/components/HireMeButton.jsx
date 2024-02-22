@@ -40,7 +40,7 @@ const HireMeButton = ({ darkMode }) => {
 						</span>
 					))}
 				</div>
-				<a href="mailto:congzhaoyan1999@gmail.com" ref={buttonRef} className={`rounded-full transition duration-300 ease-in-out flex items-center justify-center w-16 h-16 ${bgColor}`}>
+				<a href="mailto:zhaoyan.ian.cong@gmail.com" ref={buttonRef} className={`rounded-full transition duration-300 ease-in-out flex items-center justify-center w-16 h-16 ${bgColor}`}>
 					<span className="text-lg font-bold font-mono text-center leading-tight">HIRE ME</span>
 				</a>
 			</div>
