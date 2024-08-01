@@ -31,13 +31,13 @@ const HeroSection = ({ darkMode }) => {
 								1000,
 								'Web Developer',
 								1000,
-								'Mobile Developer',
+								'Full-stack Developer',
 								1000,
-								'Data Scientist',
+								'Cloud Specialist',
 								1000
 							]}
 							wrapper="span"
-							speed={10}
+							speed={20}
 							repeat={Infinity}
 						/>
 					</h1>
