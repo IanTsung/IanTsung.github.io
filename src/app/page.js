@@ -8,6 +8,7 @@ import HireMeButton from "./components/HireMeButton";
 import ProjectsSection from "./components/ProjectsSection";
 import EmailSection from "./components/EmailSection";
 import Footer from "./components/Footer";
+import TechStackList from './components/TechStack/TechStackList';
 
 export default function Home() {
 
@@ -30,6 +31,7 @@ export default function Home() {
           <AchievementsSection darkMode={darkMode}/>
         </div>
         <ProjectsSection darkMode={darkMode}/>
+        <TechStackList />
         <EmailSection darkMode={darkMode}/>
       </div>
       <Footer darkMode={darkMode}/>
