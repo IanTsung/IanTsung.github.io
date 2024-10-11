@@ -3,17 +3,17 @@ import TechStackButton from './TechStackButton'; // Import the button component
 
 const buttonData = [
   {
-    title: 'ADMIN',
+    title: 'HTML',
     color: '#ef436b',
     icon: 'laptop-outline',
   },
   {
-    title: 'WILO',
+    title: 'CSS',
     color: '#ffce5c',
     icon: 'logo-python',
   },
   {
-    title: 'PRO',
+    title: 'JAVASCRIPT',
     color: '#05c770',
     icon: 'logo-javascript',
   },
