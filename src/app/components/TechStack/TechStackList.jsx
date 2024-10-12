@@ -5,23 +5,33 @@ const buttonData = [
   {
     title: 'HTML',
     color: '#ef436b',
-    icon: 'laptop-outline',
+    icon: 'html5-plain',
   },
   {
     title: 'CSS',
     color: '#ffce5c',
-    icon: 'logo-python',
+    icon: 'css3-plain',
   },
   {
     title: 'JAVASCRIPT',
     color: '#05c770',
-    icon: 'logo-javascript',
+    icon: 'javascript-plain',
   },
+  {
+    title: 'TypeScript',
+    color: '#3178c6',
+    icon: 'typescript-plain',
+  },
+  {
+    title: 'AWS',
+    color: '#ff9900',
+    icon: 'amazonwebservices-plain-wordmark',
+  }
 ];
 
 const TechStackList = () => {
   return (
-    <ul className="flex flex-col md:flex-row items-center justify-between w-full mt-24">
+    <ul className="flex flex-col md:flex-row items-center justify-between w-full my-48">
       {buttonData.map((button, index) => (
         <TechStackButton
           key={index}

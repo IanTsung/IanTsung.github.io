@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import 'devicon/devicon.min.css';
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
 import AboutSection from "./components/AboutSection";
@@ -9,6 +10,7 @@ import ProjectsSection from "./components/ProjectsSection";
 import EmailSection from "./components/EmailSection";
 import Footer from "./components/Footer";
 import TechStackList from './components/TechStack/TechStackList';
+import SkillsSection from "./components/SkillsSection";
 
 export default function Home() {
 
@@ -30,7 +32,7 @@ export default function Home() {
           <AboutSection darkMode={darkMode}/>
           <AchievementsSection darkMode={darkMode}/>
         </div>
-        <TechStackList />
+        <SkillsSection darkMode={darkMode}/>
         <ProjectsSection darkMode={darkMode}/>
         <EmailSection darkMode={darkMode}/>
       </div>

@@ -13,7 +13,7 @@ const TechStackButton = ({ title, color, icon, link }) => {
 
         {/* Icon */}
         <span className={styles.icon}>
-          <ion-icon name={icon}></ion-icon>
+          <i className={`devicon-${icon}`}></i>
         </span>
       </li>
     </a>
