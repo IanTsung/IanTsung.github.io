@@ -13,9 +13,9 @@ const buttonData = [
     icon: 'css3-plain',
   },
   {
-    title: 'JAVASCRIPT',
+    title: 'PYTHON',
     color: '#05c770',
-    icon: 'javascript-plain',
+    icon: 'python-plain',
   },
   {
     title: 'TypeScript',
@@ -31,7 +31,7 @@ const buttonData = [
 
 const TechStackList = () => {
   return (
-    <ul className="flex flex-col md:flex-row items-center justify-between w-full my-48">
+    <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 my-36 md:my-48">
       {buttonData.map((button, index) => (
         <TechStackButton
           key={index}
