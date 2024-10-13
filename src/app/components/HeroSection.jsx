@@ -41,12 +41,12 @@ const HeroSection = ({ darkMode }) => {
 							repeat={Infinity}
 						/>
 					</h1>
-					<p className="text-[#ADB7BE] mb-6 text-base sm:text-lg lg:text-xl">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+					<p className={`mb-6 text-base sm:text-lg lg:text-xl ${textColor}`}>
+						As an experienced full-stack developer, I am dedicated to crafting clean, scalable code that powers business applications.
 					</p>
 					<div>
-						<a href="/Cong_CV.pdf" download>
-							<button className={`px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 hover:bg-slate-800 my-3 ${textColor} font-semibold`}>
+						<a target='_blank' rel='noopener noreferrer' href="/Cong_CV.pdf">
+							<button className={`px-1 py-1 w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 hover:bg-slate-800 my-3 ${textColor} font-semibold`}>
 								<span className={`flex justify-center rounded-full px-5 py-2 ${buttonColor}`}>
 									Download CV
 									<ArrowDownTrayIcon className="rounded-full ml-1 w-5 h-5" />

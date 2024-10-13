@@ -65,16 +65,16 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 						!navBarOpen ? (
 							<button
 								onClick={() => setNavBarOpen(true)}
-								className={`flex items-center px-3 py-2 border rounded ${buttonColor}`}
+								className={`flex items-center px-3 py-2 border-2 rounded ${buttonColor}`}
 							>
-								<Bars3Icon className="w-5 h-5" />
+								<Bars3Icon className="w-4 h-4 md:w-6 md:h-6" />
 							</button>
 						) : (
 							<button
 								onClick={() => setNavBarOpen(false)}
-								className={`flex items-center px-3 py-2 border rounded ${buttonColor}`}
+								className={`flex items-center px-3 py-2 border-2 rounded ${buttonColor}`}
 							>
-								<XMarkIcon className="w-5 h-5" />
+								<XMarkIcon className="w-4 h-4 md:w-6 md:h-6" />
 							</button>
 						)
 					}
@@ -94,18 +94,20 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 					IAN
 				</Link>
 				<div className="flex space-x-4 sm:space-x-8 md:space-x-12">
-					<Link href="https://github.com/IanTsung1999" style={{ filter: `${iconColor}` }}>
+					<Link target='_blank' rel='noopener noreferrer' href="https://github.com/IanTsung" style={{ filter: `${iconColor}` }}>
 						<Image
 							src="github.svg"
 							alt="github icon"
+							className="w-full h-full max-w-6 max-h-6"
 							width={25}
 							height={25}
 						/>
 					</Link>
-					<Link href="https://www.linkedin.com/in/zhaoyancong/">
+					<Link target='_blank' rel='noopener noreferrer'  href="https://www.linkedin.com/in/zhaoyancong/">
 						<Image
 							src="linkedin.svg"
 							alt="linkedin icon"
+							className="w-full h-full max-w-6 max-h-6"
 							width={25}
 							height={25}
 						/>
@@ -121,7 +123,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 				</div>
 			</div>
 			{
-				navBarOpen ? <MenuOverlay links={navLinks} /> : null
+				navBarOpen ? <MenuOverlay links={navLinks} darkMode={darkMode}/> : null
 			}
 		</nav>
 	)
