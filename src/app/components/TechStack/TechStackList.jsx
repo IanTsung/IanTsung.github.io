@@ -13,8 +13,8 @@ const buttonData = {
   ],
   backend: [
     { title: 'Node.JS', color: '#339933', icon: 'nodejs-plain-wordmark' },
-    { title: 'Express', color: '#000000', icon: 'express-original' },
-    { title: 'Django', color: '#092E20', icon: 'django-plain' },
+    { title: 'Express', color: '#888888', icon: 'express-original' },
+    { title: 'Django', color: '#44B78B', icon: 'django-plain' },
     { title: 'ASP.NET', color: '#512BD4', icon: 'dotnetcore-plain' },
     { title: 'GraphQL', color: '#E10098', icon: 'graphql-plain' },
   ],
