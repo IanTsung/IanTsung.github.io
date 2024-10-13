@@ -67,7 +67,7 @@ const EmailSection = ({ darkMode }) => {
 					to get back to you!
 				</p>
 				<div className="socials flex flex-row gap-6">
-					<Link href="https://github.com/IanTsung1999" style={{ filter: `${iconColor}` }}>
+					<Link href="https://github.com/IanTsung" style={{ filter: `${iconColor}` }}>
 						<Image
 							src={GithubIcon}
 							alt="github icon"

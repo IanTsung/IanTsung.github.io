@@ -52,8 +52,11 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 	const scrollToSection = (e, sectionId) => {
 		e.preventDefault();
 		const section = document.querySelector(sectionId);
+		const offset = 120;
+	
 		if (section) {
-			section.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			const top = section.getBoundingClientRect().top + window.scrollY - offset;
+			window.scrollTo({ top, behavior: 'smooth' });
 		}
 	};
 

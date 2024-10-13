@@ -9,7 +9,6 @@ import HireMeButton from "./components/HireMeButton";
 import ProjectsSection from "./components/ProjectsSection";
 import EmailSection from "./components/EmailSection";
 import Footer from "./components/Footer";
-import TechStackList from './components/TechStack/TechStackList';
 import SkillsSection from "./components/SkillsSection";
 
 export default function Home() {
