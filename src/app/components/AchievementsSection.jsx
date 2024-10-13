@@ -12,12 +12,12 @@ const achievementsList = [
   },
   {
 		metric: "Projects Completed",
-		value: 10,
+		value: 16,
     postfix: "+"
   },
 	{
 		metric: "Awards Earned",
-		value: 7
+		value: 5
   }
 ]
 
