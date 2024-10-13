@@ -8,18 +8,25 @@ const TAB_DATA = [
 		title: "Education",
 		id: "education",
 		content: (
-			<ul className="list-disc pl-2">
-				<li>Australian National University</li>
-				<li>Master of Computing</li>
-			</ul>
+			<div>
+				<div className='flex justify-between'>
+					<h3 className="font-semibold">Australian National University</h3>
+					<h3 className="font-semibold">Canberra, Australia</h3>
+				</div>
+				<div className='flex justify-between'>
+					<p>Master of Computing</p>
+					<p>2023.2 - 2024.12</p>
+				</div>
+    </div>
 		)
 	},
 	{
 		title: "Certifications",
 		id: "certifications",
 		content: (
-			<ul className="list-disc pl-2">
+			<ul className="list-disc pl-2 font-medium">
 				<li>AWS Certified Developer - Associate</li>
+				<li>AWS Solutions Architect - Professional (Expected)</li>
 			</ul>
 		)
 	}
