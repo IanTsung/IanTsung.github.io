@@ -12,11 +12,25 @@ const EmailSection = ({ darkMode }) => {
 
 	const form = useRef();
   const [isSubmitting, setIsSubmitting] = useState(false);
+	const [cooldown, setCooldown] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
+    if (isSubmitting || cooldown) {
+      if (cooldown) {
+        toast.warn("You just sent an email, please wait 1 minute before sending another.", {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+      }
+      return;
+    }
 
     setIsSubmitting(true);
 
@@ -54,9 +68,13 @@ const EmailSection = ({ darkMode }) => {
         }
       )
       .finally(() => {
+        setIsSubmitting(false);
+        setCooldown(true);
+
+        // Set a 1-minute cooldown
         setTimeout(() => {
-          setIsSubmitting(false); // Enable after 1 minute
-        }, 60000); // 1 minute
+          setCooldown(false);
+        }, 60000);
       });
   };
 
