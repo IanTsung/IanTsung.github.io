@@ -59,8 +59,8 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 
 	return (
 		<nav className={`fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 ${bgColor}`}>
-			<div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto px-6 py-4 md:px-20 md:py-6">
-				<div className="mobile-menu block md:hidden">
+			<div className="grid grid-cols-3 place-items-center w-full mx-auto px-6 py-4 md:px-20 md:py-6">
+				<div className="mobile-menu block xl:hidden">
 					{
 						!navBarOpen ? (
 							<button
@@ -79,7 +79,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 						)
 					}
 				</div>
-				<div className="menu hidden md:block md:w-auto" id="navbar">
+				<div className="menu hidden xl:block md:w-auto" id="navbar">
 					<ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
 						{
 							navLinks.map((link, index) => (
