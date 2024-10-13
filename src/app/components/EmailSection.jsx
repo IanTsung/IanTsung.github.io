@@ -11,20 +11,25 @@ import LinkedInIcon from "../../../public/linkedin.svg";
 const EmailSection = ({ darkMode }) => {
 
 	const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-	const sendEmail = (e) => {
-		e.preventDefault();
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-		emailjs
-			.sendForm(
-				process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-				process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-				form.current,
-				{ publicKey: process.env.NEXT_PUBLIC_EMAILJS_USER_ID }
-			)
-			.then(
-				(result) => {
-					toast.success("Thank you for reaching out!", {
+    if (isSubmitting) return;
+
+    setIsSubmitting(true);
+
+    emailjs
+      .sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        form.current,
+        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_USER_ID }
+      )
+      .then(
+        (result) => {
+          toast.success("Thank you for reaching out!", {
 						position: "top-center",
 						autoClose: 5000,
 						hideProgressBar: true,
@@ -33,10 +38,10 @@ const EmailSection = ({ darkMode }) => {
 						draggable: true,
 						progress: undefined,
 					});
-					console.log('SUCCESS!', result.text);
-				},
-				(error) => {
-					toast.error("An error occurred sending your message, please try again", {
+          console.log('SUCCESS!', result.text);
+        },
+        (error) => {
+          toast.error("An error occurred sending your message, please try again", {
 						position: "top-center",
 						autoClose: 5000,
 						hideProgressBar: true,
@@ -45,10 +50,15 @@ const EmailSection = ({ darkMode }) => {
 						draggable: true,
 						progress: undefined,
 					});
-					console.log('FAILED...', error.text);
-				}
-			);
-	};
+          console.log('FAILED...', error.text);
+        }
+      )
+      .finally(() => {
+        setTimeout(() => {
+          setIsSubmitting(false); // Enable after 1 minute
+        }, 60000); // 1 minute
+      });
+  };
 
 	const textColor = darkMode ? "text-white": "text-slate-800";
 	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
@@ -139,9 +149,9 @@ const EmailSection = ({ darkMode }) => {
 					</div>
 					<button
 						type="submit"
-						className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full sm:w-1/3"
+						className={`bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full sm:w-1/3 ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
 					>
-						Submit
+						{isSubmitting ? 'Submitting...' : 'Submit'}
 					</button>
 				</form>
 			</div>
