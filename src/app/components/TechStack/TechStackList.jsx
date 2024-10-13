@@ -1,47 +1,81 @@
 import React from 'react';
 import TechStackButton from './TechStackButton'; // Import the button component
 
-const buttonData = [
-  {
-    title: 'HTML',
-    color: '#ef436b',
-    icon: 'html5-plain',
-  },
-  {
-    title: 'CSS',
-    color: '#ffce5c',
-    icon: 'css3-plain',
-  },
-  {
-    title: 'PYTHON',
-    color: '#05c770',
-    icon: 'python-plain',
-  },
-  {
-    title: 'TypeScript',
-    color: '#3178c6',
-    icon: 'typescript-plain',
-  },
-  {
-    title: 'AWS',
-    color: '#ff9900',
-    icon: 'amazonwebservices-plain-wordmark',
-  }
-];
+const buttonData = {
+  frontend: [
+    { title: 'HTML', color: '#E34F26', icon: 'html5-plain' },
+    { title: 'CSS', color: '#1572B6', icon: 'css3-plain' },
+    { title: 'TypeScript', color: '#3178C6', icon: 'typescript-plain' },
+    { title: 'React', color: '#61DAFB', icon: 'react-original' },
+    { title: 'Redux', color: '#764ABC', icon: 'redux-original' },
+    { title: 'Tailwind', color: '#06B6D4', icon: 'tailwindcss-original' },
+    { title: 'SASS', color: '#CC6699', icon: 'sass-original' },
+  ],
+  backend: [
+    { title: 'Node.JS', color: '#339933', icon: 'nodejs-plain-wordmark' },
+    { title: 'Express', color: '#000000', icon: 'express-original' },
+    { title: 'Django', color: '#092E20', icon: 'django-plain' },
+    { title: 'ASP.NET', color: '#512BD4', icon: 'dotnetcore-plain' },
+    { title: 'GraphQL', color: '#E10098', icon: 'graphql-plain' },
+  ],
+  cloud: [
+    { title: 'AWS', color: '#FF9900', icon: 'amazonwebservices-plain-wordmark' },
+    { title: 'Azure', color: '#0089D6', icon: 'azure-plain' },
+    { title: 'GCP', color: '#4285F4', icon: 'googlecloud-plain' },
+  ],
+  database: [
+    { title: 'MongoDB', color: '#47A248', icon: 'mongodb-plain' },
+    { title: 'DynamoDB', color: '#4053D6', icon: 'dynamodb-plain' },
+    { title: 'PostgreSQL', color: '#336791', icon: 'postgresql-plain' },
+  ],
+  devops: [
+    { title: 'Docker', color: '#2496ED', icon: 'docker-plain' },
+    { title: 'Jenkins', color: '#D24939', icon: 'jenkins-plain' },
+    { title: 'Kubernetes', color: '#326CE5', icon: 'kubernetes-plain' },
+  ]
+};
 
-const TechStackList = () => {
+const TechStackList = ({ darkMode }) => {
+
+  const textColor = darkMode ? "text-white" : "text-slate-800";
+
   return (
-    <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 my-36 md:my-48">
-      {buttonData.map((button, index) => (
-        <TechStackButton
-          key={index}
-          title={button.title}
-          color={button.color}
-          icon={button.icon}
-          link={button.link}
-        />
-      ))}
-    </ul>
+    <div>
+      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Frontend</h3>
+      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+        {buttonData.frontend.map((button, index) => (
+          <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
+        ))}
+      </ul>
+
+      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Backend</h3>
+      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+        {buttonData.backend.map((button, index) => (
+          <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
+        ))}
+      </ul>
+
+      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Cloud Services</h3>
+      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+        {buttonData.cloud.map((button, index) => (
+          <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
+        ))}
+      </ul>
+
+      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Database</h3>
+      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+        {buttonData.database.map((button, index) => (
+          <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
+        ))}
+      </ul>
+
+      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>DevOps</h3>
+      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+        {buttonData.devops.map((button, index) => (
+          <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
+        ))}
+      </ul>
+    </div>
   );
 };
 

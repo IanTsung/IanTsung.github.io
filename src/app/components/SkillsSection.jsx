@@ -15,7 +15,7 @@ const SkillsSection = ({ darkMode }) => {
 			<h2 className={`text-center text-4xl font-bold mt-4 mb-12 ${textColor}`}>
 				Skills
 			</h2>
-			<TechStackList />
+			<TechStackList darkMode={darkMode}/>
 		</section>
 	)
 }
