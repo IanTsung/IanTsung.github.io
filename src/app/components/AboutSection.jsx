@@ -1,4 +1,5 @@
 "use client";
+import { useSelector } from 'react-redux';
 import React, { useTransition, useState } from 'react';
 import Image from 'next/image';
 import TabButton from './TabButton';
@@ -32,7 +33,9 @@ const TAB_DATA = [
 	}
 ]
 
-const AboutSection = ({ darkMode }) => {
+const AboutSection = () => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const textColor = darkMode ? "text-white" : "text-slate-800";
 
@@ -70,7 +73,6 @@ const AboutSection = ({ darkMode }) => {
 						<TabButton
 							selectTab={() => handleTabChange("education")}
 							active={tab === "education"}
-							darkMode={darkMode}
 						>
 							{" "}
 							Education{" "}
@@ -78,7 +80,6 @@ const AboutSection = ({ darkMode }) => {
 						<TabButton
 							selectTab={() => handleTabChange("certifications")}
 							active={tab === "certifications"}
-							darkMode={darkMode}
 						>
 							{" "}
 							Certifications{" "}

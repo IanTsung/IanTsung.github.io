@@ -1,5 +1,6 @@
 "use client";
 import React, { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,9 +9,12 @@ import Image from 'next/image';
 import GithubIcon from "../../../public/github.svg";
 import LinkedInIcon from "../../../public/linkedin.svg";
 
-const EmailSection = ({ darkMode }) => {
+const EmailSection = () => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const form = useRef();
+	
   const [isSubmitting, setIsSubmitting] = useState(false);
 	const [cooldown, setCooldown] = useState(false);
 

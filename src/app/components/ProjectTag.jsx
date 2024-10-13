@@ -1,6 +1,10 @@
+"use client";
 import React from 'react'
+import { useSelector } from 'react-redux';
 
-const ProjectTag = ({ tag, onClick, isSelected, darkMode }) => {
+const ProjectTag = ({ tag, onClick, isSelected }) => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const buttonStyles = isSelected
 		? `${darkMode ? "text-white" : "text-slate-800"} border-primary-500`

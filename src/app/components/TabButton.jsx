@@ -1,4 +1,6 @@
+"use client";
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { motion } from 'framer-motion';
 
 const variants = {
@@ -6,7 +8,9 @@ const variants = {
 	active: { width: "calc(100% - 0.75rem)" }
 }
 
-const TabButton = ({ active, selectTab, children, darkMode }) => {
+const TabButton = ({ active, selectTab, children }) => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const buttonClasses = active
 		? `${darkMode ? "text-white" : "text-black"}`

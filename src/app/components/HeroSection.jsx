@@ -1,11 +1,14 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 
-const HeroSection = ({ darkMode }) => {
+const HeroSection = () => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const textColor = darkMode ? "text-white" : "text-slate-900";
 	const buttonColor = darkMode ? "bg-[#121212] hover:bg-slate-800" : "bg-slate-50 hover:bg-gray-200";

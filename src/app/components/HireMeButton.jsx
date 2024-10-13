@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { gsap } from "gsap";
 
 const circleText = "Data Scientist  Web Developer  Mobile Developer  ";
 
-const HireMeButton = ({ darkMode }) => {
+const HireMeButton = () => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const circularColor = darkMode ? "text-white" : "text-black";
 	const bgColor = darkMode ? "bg-slate-100 text-black hover:bg-gray-200" : "bg-black text-white hover:bg-gray-700";

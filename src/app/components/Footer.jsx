@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 
-const Footer = ({ darkMode }) => {
-
+const Footer = () => {
+  
+  const darkMode = useSelector((state) => state.darkMode);
+  
   const textColor = darkMode ? "text-white": "text-slate-950";
 
   return (

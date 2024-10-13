@@ -1,4 +1,6 @@
+"use client";
 import React from 'react';
+import { useSelector } from 'react-redux';
 import TechStackButton from './TechStackButton'; // Import the button component
 
 const buttonData = {
@@ -35,7 +37,9 @@ const buttonData = {
   ]
 };
 
-const TechStackList = ({ darkMode }) => {
+const TechStackList = () => {
+
+  const darkMode = useSelector((state) => state.darkMode);
 
   const textColor = darkMode ? "text-white" : "text-slate-800";
 

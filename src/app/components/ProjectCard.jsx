@@ -1,8 +1,12 @@
+"use client";
 import React from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
 
-const ProjectCard = ({ imgUrl, title, description, gitUrl, darkMode }) => {
+const ProjectCard = ({ imgUrl, title, description, gitUrl }) => {
+
+  const darkMode = useSelector((state) => state.darkMode);
   
   const bgColor = darkMode ? "bg-[#181818]" : "bg-slate-950";
   const shadeColor = darkMode ? "bg-slate-100": "bg-slate-500";

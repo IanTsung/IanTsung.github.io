@@ -1,4 +1,6 @@
 "use client";
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleDarkMode } from './darkModeSlice';
 import Link from 'next/link';
 import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
@@ -25,7 +27,10 @@ const navLinks = [
 	}
 ]
 
-const NavBar = ({ darkMode, toggleDarkMode }) => {
+const NavBar = () => {
+
+	const darkMode = useSelector((state) => state.darkMode);
+  const dispatch = useDispatch();
 
 	const [navBarOpen, setNavBarOpen] = useState(false);
 
@@ -87,7 +92,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 						{
 							navLinks.map((link, index) => (
 								<li key={index}>
-									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} darkMode={darkMode} />
+									<NavLink href={link.href} title={link.title} onClick={(e) => scrollToSection(e, link.href)} />
 								</li>
 							))
 						}
@@ -115,7 +120,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 							height={25}
 						/>
 					</Link>
-					<button onClick={toggleDarkMode} className={`relative rounded-full border-2 p-1 transition-colors duration-500 ease-in-out ${switchBorderColor} flex justify-center items-center w-6 h-6`}>
+					<button onClick={() => dispatch(toggleDarkMode())} className={`relative rounded-full border-2 p-1 transition-colors duration-500 ease-in-out ${switchBorderColor} flex justify-center items-center w-6 h-6`}>
 						<div className="absolute flex transition-opacity duration-500 ease-in-out" style={{ opacity: darkMode ? 1 : 0 }}>
 							<MoonIcon className="w-4 h-4 text-white" />
 						</div>
@@ -126,7 +131,7 @@ const NavBar = ({ darkMode, toggleDarkMode }) => {
 				</div>
 			</div>
 			{
-				navBarOpen ? <MenuOverlay links={navLinks} darkMode={darkMode}/> : null
+				navBarOpen ? <MenuOverlay links={navLinks} /> : null
 			}
 		</nav>
 	)

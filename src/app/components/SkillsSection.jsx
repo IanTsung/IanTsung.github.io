@@ -1,9 +1,12 @@
 "use client";
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { motion, useInView } from 'framer-motion';
 import TechStackList from './TechStack/TechStackList';
 
-const SkillsSection = ({ darkMode }) => {
+const SkillsSection = () => {
+
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
@@ -15,7 +18,7 @@ const SkillsSection = ({ darkMode }) => {
 			<h2 className={`text-center text-4xl font-bold mt-4 mb-12 ${textColor}`}>
 				Skills
 			</h2>
-			<TechStackList darkMode={darkMode}/>
+			<TechStackList />
 		</section>
 	)
 }

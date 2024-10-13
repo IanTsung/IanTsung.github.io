@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useSelector } from 'react-redux';
+import { toggleDarkMode } from './components/darkModeSlice';
 import 'devicon/devicon.min.css';
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
@@ -13,30 +14,25 @@ import SkillsSection from "./components/SkillsSection";
 
 export default function Home() {
 
-  const [darkMode, setDarkMode] = useState(true);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.body.classList.toggle('dark');
-  };
+  const darkMode = useSelector((state) => state.darkMode);
 
   const bgColorClass = darkMode ? 'bg-[#121212]' : 'bg-slate-50';
 
   return (
     <main className={`flex min-h-screen flex-col ${bgColorClass}`}>
-      <NavBar darkMode={darkMode} toggleDarkMode={toggleDarkMode}/>
+      <NavBar />
       <div className="container mt-24 mx-auto px-12 py-4">
-        <HeroSection darkMode={darkMode}/>
+        <HeroSection />
         <div className="flex flex-col xl:flex-row">
-          <AboutSection darkMode={darkMode}/>
-          <AchievementsSection darkMode={darkMode}/>
+          <AboutSection />
+          <AchievementsSection />
         </div>
-        <SkillsSection darkMode={darkMode}/>
-        <ProjectsSection darkMode={darkMode}/>
-        <EmailSection darkMode={darkMode}/>
+        <SkillsSection />
+        <ProjectsSection />
+        <EmailSection />
       </div>
-      <Footer darkMode={darkMode}/>
-      <HireMeButton darkMode={darkMode}/>
+      <Footer />
+      <HireMeButton />
     </main>
   );
 }

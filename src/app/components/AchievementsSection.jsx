@@ -1,4 +1,5 @@
 "use client";
+import { useSelector } from 'react-redux';
 import React from 'react';
 import dynamic from 'next/dynamic';
 
@@ -21,7 +22,9 @@ const achievementsList = [
   }
 ]
 
-const AchievementsSection = ({ darkMode }) => {
+const AchievementsSection = () => {
+	
+	const darkMode = useSelector((state) => state.darkMode);
 
 	const textColor = darkMode ? "text-white" : "text-slate-800";
 

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { motion, useInView } from 'framer-motion';
 import ProjectCard from './ProjectCard';
 import ProjectTag from './ProjectTag';
@@ -31,8 +32,9 @@ const projectsData = [
 	},
 ]
 
-const ProjectsSection = ({ darkMode }) => {
+const ProjectsSection = () => {
 
+	const darkMode = useSelector((state) => state.darkMode);
 	const [tag, setTag] = useState("All");
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true });
@@ -62,19 +64,16 @@ const ProjectsSection = ({ darkMode }) => {
 					onClick={handleTagChange}
 					tag="All"
 					isSelected={tag === "All"}
-					darkMode={darkMode}
 				/>
 				<ProjectTag
 					onClick={handleTagChange}
 					tag="Web"
 					isSelected={tag === "Web"}
-					darkMode={darkMode}
 				/>
 				<ProjectTag
 					onClick={handleTagChange}
 					tag="Mobile"
 					isSelected={tag === "Mobile"}
-					darkMode={darkMode}
 				/>
 			</div>
 			<ul
@@ -96,7 +95,6 @@ const ProjectsSection = ({ darkMode }) => {
 								imgUrl={project.image}
 								title={project.title}
 								description={project.description}
-								darkMode={darkMode}
 							/>
 						</motion.li>
 					)
