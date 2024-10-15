@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { gsap } from "gsap";
 
-const circleText = "Data Scientist  Web Developer  Mobile Developer  ";
+const circleText = "Full Stack Developer  Web Developer  Cloud Specialist  ";
 
 const HireMeButton = () => {
 
