@@ -45,35 +45,35 @@ const TechStackList = () => {
 
   return (
     <div>
-      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Frontend</h3>
+      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>Frontend</h3>
       <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
         {buttonData.frontend.map((button, index) => (
           <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Backend</h3>
+      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>Backend</h3>
       <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
         {buttonData.backend.map((button, index) => (
           <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Cloud Services</h3>
+      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>Cloud Services</h3>
       <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
         {buttonData.cloud.map((button, index) => (
           <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>Database</h3>
+      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>Database</h3>
       <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
         {buttonData.database.map((button, index) => (
           <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl mb-6 font-semibold ${textColor}`}>DevOps</h3>
+      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>DevOps</h3>
       <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
         {buttonData.devops.map((button, index) => (
           <TechStackButton key={index} title={button.title} color={button.color} icon={button.icon} link={button.link} />

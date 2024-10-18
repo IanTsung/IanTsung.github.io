@@ -10,11 +10,11 @@ const TAB_DATA = [
 		id: "education",
 		content: (
 			<div>
-				<div className='flex justify-between'>
-					<h3 className="font-semibold">Australian National University</h3>
-					<h3 className="font-semibold">Canberra, Australia</h3>
+				<div className='grid grid-cols-2'>
+					<h3 className="font-semibold col-span-1">Australian National University</h3>
+					<h3 className="font-semibold col-span-1">Canberra, Australia</h3>
 				</div>
-				<div className='flex justify-between'>
+				<div className='grid grid-cols-2'>
 					<p>Master of Computing</p>
 					<p>2023.2 - 2024.12</p>
 				</div>
