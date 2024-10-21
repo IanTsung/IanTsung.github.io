@@ -26,7 +26,8 @@ const AchievementsSection = () => {
 	
 	const darkMode = useSelector((state) => state.darkMode);
 
-	const textColor = darkMode ? "text-white" : "text-slate-800";
+	const numColor = darkMode ? "text-white" : "text-slate-800";
+	const textColor = darkMode ? "text-[#ADB7BE]" : "text-gray-700";
 
   return (
     <div className="px-2 py-8 sm:py-4 xl:px-8">
@@ -38,13 +39,13 @@ const AchievementsSection = () => {
 								key={index}
 								className="flex flex-col items-start justify-center sm:mx-4"
 							>
-								<h2 className={`flex flex-row sm:gap-2 text-4xl sm:text-5xl xl:text-7xl font-bold ${textColor}`}>
+								<h2 className={`flex flex-row sm:gap-2 text-4xl sm:text-5xl xl:text-7xl font-bold ${numColor}`}>
 									<AnimatedNumbers
 										key={darkMode ? 'dark' : 'light'}
                     includeComma
                     animateToNumber={achievement.value}
                     locale="en-US"
-                    className={`text-4xl sm:text-5xl xl:text-7xl font-bold ${textColor}`}
+                    className={`text-4xl sm:text-5xl xl:text-7xl font-bold ${numColor}`}
                     transitions={() => ({
                       type: "spring",
                       duration: (index * 0.75) + 1.5,
@@ -52,7 +53,7 @@ const AchievementsSection = () => {
                   />
                   {achievement.postfix}
 								</h2>
-								<p className="text-[#ADB7BE] text-sm">
+								<p className={`${textColor} text-sm`}>
 									{achievement.metric}
 								</p>
 							</div>

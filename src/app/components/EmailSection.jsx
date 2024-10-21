@@ -82,9 +82,10 @@ const EmailSection = () => {
       });
   };
 
-	const textColor = darkMode ? "text-white": "text-slate-800";
+	const textColor = darkMode ? "text-white" : "text-slate-800";
 	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
-	const barColor = darkMode ? "bg-[#18191E]": "bg-gray-200";
+	const barColor = darkMode ? "bg-[#18191E]" : "bg-gray-200";
+	const contentColor = darkMode ? "text-[#ADB7BE]" : "text-gray-700";
 
 	return (
 		<section id="contact" className="grid md:grid-cols-2 my-12 py-24 gap-4 relative">
@@ -92,7 +93,7 @@ const EmailSection = () => {
 				<h5 className={`text-xl font-bold my-2 ${textColor}`}>
 					Let's Connect
 				</h5>
-				<p className="text-[#ADB7BE] mb-4 max-w-md">
+				<p className={`${contentColor} mb-4 max-w-md`}>
 					{" "}
 					I'm currently looking for new opportunities, my inbox is always open.
 					Whether you have a question or just want to say hi, I'll try my best
