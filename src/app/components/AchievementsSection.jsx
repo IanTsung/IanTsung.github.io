@@ -1,14 +1,16 @@
 "use client";
 import { useSelector } from 'react-redux';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 const AnimatedNumbers = dynamic(() => import("react-animated-numbers"), { ssr: false });
 
-const achievementsList = [
+const years = new Date().getFullYear() - 2022
+
+const initialAchievementsList = [
   {
 		metric: "Years of Experience",
-		value: 2,
+		value: years,
     postfix: "+"
   },
   {
@@ -22,12 +24,46 @@ const achievementsList = [
   }
 ]
 
+const getGitHubRepos = async (username) => {
+  const url = `https://api.github.com/users/${username}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data.public_repos;
+  } catch (error) {
+    console.error("There was a problem with the fetch operation:", error);
+    return null;
+  }
+};
+
 const AchievementsSection = () => {
 	
 	const darkMode = useSelector((state) => state.darkMode);
 
 	const numColor = darkMode ? "text-white" : "text-slate-800";
 	const textColor = darkMode ? "text-[#ADB7BE]" : "text-gray-700";
+
+	const [achievementsList, setAchievementsList] = useState(initialAchievementsList);
+
+	useEffect(() => {
+    const fetchGitHubRepos = async () => {
+      const repoCount = await getGitHubRepos('IanTsung');
+      if (repoCount !== null) {
+        setAchievementsList((prevList) =>
+          prevList.map((achievement) =>
+            achievement.metric === "Projects Completed"
+              ? { ...achievement, value: repoCount }
+              : achievement
+          )
+        );
+      }
+    };
+
+    fetchGitHubRepos();
+  }, []);
 
   return (
     <div className="px-2 py-8 sm:py-4 xl:px-8">
