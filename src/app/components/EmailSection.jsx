@@ -101,7 +101,7 @@ const EmailSection = () => {
 					to get back to you!
 				</p>
 				<div className="socials flex flex-row gap-6">
-					<Link href="https://github.com/IanTsung" style={{ filter: `${iconColor}` }}>
+					<Link target='_blank' rel='noopener noreferrer' href="https://github.com/IanTsung" style={{ filter: `${iconColor}` }}>
 						<Image
 							src={GithubIcon}
 							alt="github icon"
@@ -109,7 +109,7 @@ const EmailSection = () => {
 							height={25}
 						/>
 					</Link>
-					<Link href="https://www.linkedin.com/in/zhaoyancong/">
+					<Link target='_blank' rel='noopener noreferrer' href="https://www.linkedin.com/in/zhaoyancong/">
 						<Image
 							src={LinkedInIcon}
 							alt="linkedin icon"
