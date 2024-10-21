@@ -86,6 +86,7 @@ const EmailSection = () => {
 	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
 	const barColor = darkMode ? "bg-[#18191E]" : "bg-gray-200";
 	const contentColor = darkMode ? "text-[#ADB7BE]" : "text-gray-700";
+	const placeholderColor = darkMode ? "placeholder-[#9CA2A9]" : "placeholder-gray-400"
 
 	return (
 		<section id="contact" className="grid md:grid-cols-2 my-12 py-24 gap-4 relative">
@@ -129,7 +130,7 @@ const EmailSection = () => {
 							name="from_name"
 							id="name"
 							placeholder="John Doe"
-							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
+							className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
 						/>
 					</div>
 					<div className="mb-6">
@@ -141,7 +142,7 @@ const EmailSection = () => {
 							name="from_email"
 							id="email"
 							placeholder="JohnDoe@abc.com"
-							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
+							className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
 						/>
 					</div>
 					<div className="mb-6">
@@ -152,7 +153,7 @@ const EmailSection = () => {
 							type="text"
 							id="subject"
 							placeholder="Just to say hi"
-							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
+							className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
 						/>
 					</div>
 					<div className="mb-12">
@@ -166,7 +167,7 @@ const EmailSection = () => {
 							name="message"
 							id="message"
 							rows={5}
-							className={`block w-full p-2.5 text-gray-100 text-sm rounded-lg border border-[#33353F] placeholder-[#9CA2A9] ${barColor}`}
+							className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
 							placeholder="Hi Ian, I'd like to talk about..."
 						/>
 					</div>
