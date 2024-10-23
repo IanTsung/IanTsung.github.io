@@ -12,6 +12,7 @@ const buttonData = {
     { title: 'Redux', color: '#764ABC', icon: 'redux-original' },
     { title: 'Tailwind', color: '#06B6D4', icon: 'tailwindcss-original' },
     { title: 'SASS', color: '#CC6699', icon: 'sass-original' },
+    { title: 'Flutter', color: '#02569B', icon: 'flutter-plain'},
   ],
   backend: [
     { title: 'Node.JS', color: '#339933', icon: 'nodejs-plain-wordmark' },
@@ -19,6 +20,8 @@ const buttonData = {
     { title: 'Django', color: '#44B78B', icon: 'django-plain' },
     { title: 'ASP.NET', color: '#512BD4', icon: 'dotnetcore-plain' },
     { title: 'GraphQL', color: '#E10098', icon: 'graphql-plain' },
+    { title: 'Dart', color: '#0175C2', icon: 'dart-plain'},
+    { title: 'Rust', color: '#F74C00', icon: 'rust-original'},
   ],
   cloud: [
     { title: 'AWS', color: '#FF9900', icon: 'amazonwebservices-plain-wordmark' },
