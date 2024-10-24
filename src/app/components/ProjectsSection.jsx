@@ -102,7 +102,7 @@ const ProjectsSection = () => {
 			</div>
 			<ul
 				ref={ref}
-				className="grid lg:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12"
+				className="grid lg:grid-cols-2 2xl:grid-cols-3 gap-10 lg:gap-12"
 			>
 				{
 					filteredProjects.map((project, index) =>

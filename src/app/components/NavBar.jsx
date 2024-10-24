@@ -121,10 +121,10 @@ const NavBar = () => {
 						/>
 					</Link>
 					<button onClick={() => dispatch(toggleDarkMode())} className={`relative rounded-full border-2 p-1 transition-colors duration-500 ease-in-out ${switchBorderColor} flex justify-center items-center w-6 h-6`}>
-						<div className="absolute flex transition-opacity duration-500 ease-in-out" style={{ opacity: darkMode ? 1 : 0 }}>
+						<div className="absolute flex transition-opacity ease-in-out delay-300 duration-300" style={{ opacity: darkMode ? 1 : 0 }}>
 							<MoonIcon className="w-4 h-4 text-white" />
 						</div>
-						<div className="absolute flex transition-opacity duration-500 ease-in-out" style={{ opacity: !darkMode ? 1 : 0 }}>
+						<div className="absolute flex transition-opacity ease-in-out delay-300 duration-300" style={{ opacity: !darkMode ? 1 : 0 }}>
 							<SunIcon className="w-4 h-4 text-slate-800" />
 						</div>
 					</button>
