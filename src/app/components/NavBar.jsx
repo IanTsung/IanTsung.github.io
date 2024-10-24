@@ -38,7 +38,7 @@ const NavBar = () => {
 	const bgColor = darkMode ? "bg-[#121212]" : "bg-slate-50";
 	const logoColor = darkMode ? "text-white" : "text-black";
 	const iconColor = darkMode ? "invert(100%) brightness(2)" : "invert(0%) brightness(0)"
-	const buttonColor = darkMode ? "border-slate-200 text-slate-200 hover:text-white hover:border-white" : "border-slate-500 text-slate-500 hover:text-black hover:border-black"
+	const buttonColor = darkMode ? "border-slate-200 text-slate-200 hover:text-white hover:border-white" : "border-slate-700 text-slate-700 hover:text-black hover:border-black"
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -120,11 +120,11 @@ const NavBar = () => {
 							height={25}
 						/>
 					</Link>
-					<button onClick={() => dispatch(toggleDarkMode())} className={`relative rounded-full border-2 p-1 transition-colors duration-500 ease-in-out ${switchBorderColor} flex justify-center items-center w-6 h-6`}>
-						<div className="absolute flex transition-opacity ease-in-out delay-300 duration-300" style={{ opacity: darkMode ? 1 : 0 }}>
-							<MoonIcon className="w-4 h-4 text-white" />
+					<button onClick={() => dispatch(toggleDarkMode())} className={`relative rounded-full border-2 p-1 transition-colors delay-200 duration-200 ease-in-out ${switchBorderColor} flex justify-center items-center w-6 h-6`}>
+						<div className="absolute flex transition-opacity ease-in-out delay-200 duration-200" style={{ opacity: darkMode ? 1 : 0 }}>
+							<MoonIcon className="w-3.5 h-3.5 text-white" />
 						</div>
-						<div className="absolute flex transition-opacity ease-in-out delay-300 duration-300" style={{ opacity: !darkMode ? 1 : 0 }}>
+						<div className="absolute flex transition-opacity ease-in-out delay-200 duration-200" style={{ opacity: !darkMode ? 1 : 0 }}>
 							<SunIcon className="w-4 h-4 text-slate-800" />
 						</div>
 					</button>
