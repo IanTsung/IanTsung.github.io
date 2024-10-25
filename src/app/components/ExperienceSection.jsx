@@ -13,14 +13,15 @@ const ExperienceSection = () => {
   const textColor = darkMode ? "text-white" : "text-slate-800";
 
   const settings = {
-    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 600,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    dots: false,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 6000,
+    fade: true,
   };
 
   const experiences = [

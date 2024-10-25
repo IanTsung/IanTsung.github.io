@@ -22,7 +22,7 @@ const ExperienceCard = ({ title, company, companyIcon, duration, description, sk
 
       {/* Job Title and Company */}
       <h3 className={`text-2xl font-semibold ${titleColor}`}>{title}</h3>
-      <h4 className={`text-lg font-medium ${companyColor}`}>{company}</h4>
+      <h4 className={`text-lg font-semibold ${companyColor}`}>{company}</h4>
       <p className={`text-sm ${durationColor}`}>{duration}</p>
 
       {/* Description */}
