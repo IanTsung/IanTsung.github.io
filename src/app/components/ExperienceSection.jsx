@@ -33,12 +33,12 @@ const ExperienceSection = () => {
       skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
     },
     {
-      title: "Full Stack Developer",
+      title: "Tech Lead",
       company: "Qixin Co Pty Ltd",
       companyIcon: "/work/qixin.png",
       duration: "Sep 2024 - Oct 2024",
-      description: "Responsible for both backend and frontend development, using React, Node.js, and Firebase.",
-      skills: ["React", "Node.js", "Firebase", "Redux"],
+      description: "Spearheaded both backend and frontend development, using React, Express.js, and Firebase.",
+      skills: ["React", "Express.js", "Firebase", "Redux"],
     },
     {
       title: "Back End Developer",
@@ -53,7 +53,7 @@ const ExperienceSection = () => {
       company: "Mandala Partners",
       companyIcon: "/work/mandala_partners.jpg",
       duration: "Feb 2024 - Jun 2024",
-      description: "Spearheaded the development of a zero-shot learning tool for economic analysis of corporate documents.",
+      description: "Responsible for the development of a zero-shot learning tool for economic analysis of corporate documents.",
       skills: ["AWS SageMaker", "Python", "NLP", "Zero-shot Learning"],
     },
   ];  

@@ -16,7 +16,7 @@ const ExperienceCard = ({ title, company, companyIcon, duration, description, sk
                     border-2 border-transparent">
       
       {/* Company Icon */}
-      <div className="w-16 h-16 flex items-center justify-center rounded-full overflow-hidden">
+      <div className="w-20 h-20 flex items-center justify-center rounded-full overflow-hidden">
         <img src={companyIcon} alt={`${company} logo`} className="w-full h-full object-fill" />
       </div>
 
