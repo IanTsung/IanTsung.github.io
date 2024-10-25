@@ -15,7 +15,7 @@ const SkillsSection = () => {
 
 	return (
 		<section id="skills">
-			<h2 className={`text-center text-4xl font-bold mt-4 mb-12 ${textColor}`}>
+			<h2 className={`text-center text-4xl font-bold mt-20 mb-12 ${textColor}`}>
 				Skills
 			</h2>
 			<TechStackList />

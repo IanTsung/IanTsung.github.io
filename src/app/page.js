@@ -10,6 +10,7 @@ import ProjectsSection from "./components/ProjectsSection";
 import EmailSection from "./components/EmailSection";
 import Footer from "./components/Footer";
 import SkillsSection from "./components/SkillsSection";
+import ExperienceSection from './components/ExperienceSection';
 
 export default function Home() {
 
@@ -26,6 +27,7 @@ export default function Home() {
           <AboutSection />
           <AchievementsSection />
         </div>
+        <ExperienceSection />
         <SkillsSection />
         <ProjectsSection />
         <EmailSection />
