@@ -98,7 +98,11 @@ const NavBar = () => {
 						}
 					</ul>
 				</div>
-				<Link href={"/"} className={`text-4xl lg:text-5xl xl:text-6xl ${logoColor} font-semibold font-zolasixx`}>
+				<Link
+					href="/"
+					onClick={(e) => scrollToSection(e, "#top")}
+					className={`text-4xl lg:text-5xl xl:text-6xl ${logoColor} font-semibold font-zolasixx`}
+				>
 					IAN
 				</Link>
 				<div className="flex space-x-4 sm:space-x-8 md:space-x-12">
