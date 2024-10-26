@@ -14,14 +14,15 @@ const ExperienceSection = () => {
 
   const settings = {
     infinite: true,
-    speed: 600,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
     dots: false,
     autoplay: true,
-    autoplaySpeed: 6000,
+    autoplaySpeed: 5000,
     fade: true,
+    pauseOnHover: false,
   };
 
   const experiences = [
