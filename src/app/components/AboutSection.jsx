@@ -10,13 +10,13 @@ const TAB_DATA = [
 		id: "education",
 		content: (
 			<div>
-				<div className='grid grid-cols-2'>
-					<h3 className="font-semibold col-span-1">Australian National University</h3>
-					<h3 className="font-semibold col-span-1">Canberra, Australia</h3>
+				<div className='grid grid-rows-1 md:grid-cols-2'>
+					<h3 className="font-semibold row-span-1 md:col-span-1 text-start">Australian National University</h3>
+					<h3 className="font-semibold row-span-1 md:col-span-1 text-start md:text-end">Canberra, Australia</h3>
 				</div>
-				<div className='grid grid-cols-2'>
-					<p>Master of Computing</p>
-					<p>2023.2 - 2024.12</p>
+				<div className='grid grid-rows-1 md:grid-cols-2'>
+					<p className="row-span-1 md:col-span-1 text-start">Master of Computing</p>
+					<p className="row-span-1 md:col-span-1 text-start md:text-end">2023.2 - 2024.12</p>
 				</div>
     </div>
 		)
