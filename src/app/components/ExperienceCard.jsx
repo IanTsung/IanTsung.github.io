@@ -1,9 +1,15 @@
 "use client";
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
 
-const ExperienceCard = ({ title, company, companyIcon, duration, description, skills }) => {
-
+const ExperienceCard = ({
+  title,
+  company,
+  companyIcon,
+  duration,
+  description,
+  skills,
+}) => {
   const darkMode = useSelector((state) => state.darkMode);
 
   const titleColor = darkMode ? "text-white" : "text-gray-800";
@@ -12,12 +18,17 @@ const ExperienceCard = ({ title, company, companyIcon, duration, description, sk
   const descriptionColor = darkMode ? "text-gray-300" : "text-gray-600";
 
   return (
-    <div className="relative p-6 rounded-[1rem] text-center w-full max-w-xl mx-auto flex flex-col items-center space-y-4
-                    border-2 border-transparent">
-      
+    <div
+      className="relative p-6 rounded-[1rem] text-center w-full max-w-xl mx-auto flex flex-col items-center space-y-4
+                    border-2 border-transparent"
+    >
       {/* Company Icon */}
       <div className="w-20 h-20 flex items-center justify-center rounded-full overflow-hidden">
-        <img src={companyIcon} alt={`${company} logo`} className="w-full h-full object-fill" />
+        <img
+          src={companyIcon}
+          alt={`${company} logo`}
+          className="w-full h-full object-fill"
+        />
       </div>
 
       {/* Job Title and Company */}
@@ -26,9 +37,7 @@ const ExperienceCard = ({ title, company, companyIcon, duration, description, sk
       <p className={`text-sm ${durationColor}`}>{duration}</p>
 
       {/* Description */}
-      <p className={`mt-2 ${descriptionColor}`}>
-        {description}
-      </p>
+      <p className={`mt-2 ${descriptionColor}`}>{description}</p>
 
       {/* Skill Tags */}
       <div className="flex flex-wrap justify-center gap-2 mt-4">
