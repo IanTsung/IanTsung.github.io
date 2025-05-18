@@ -35,7 +35,7 @@ const ExperienceSection = () => {
       skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
     },
     {
-      title: "Tech Lead",
+      title: "Full Stack Developer",
       company: "Qixin Co Pty Ltd",
       companyIcon: "/work/qixin.png",
       duration: "Sep 2024 - Oct 2024",
@@ -44,7 +44,7 @@ const ExperienceSection = () => {
       skills: ["React", "Express.js", "Firebase", "Redux"],
     },
     {
-      title: "Back End Developer",
+      title: "Full Stack Developer",
       company: "Cyberlark Studio",
       companyIcon: "/work/cyberlark.png",
       duration: "Mar 2024 - Aug 2024",
