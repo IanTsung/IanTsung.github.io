@@ -25,7 +25,7 @@ const HeroSection = () => {
           className="col-span-7 place-self-center text-center sm:text-left justify-self-start"
         >
           <h1
-            className={`mb-4 text-4xl sm:text-5xl lg:text-7xl lg:leading-tight font-extrabold ${textColor}`}
+            className={`mb-4 text-4xl sm:text-5xl lg:text-6xl 2xl:text-7xl lg:leading-tight font-extrabold ${textColor}`}
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-primary-500 to-secondary-500">
               Hello, I'm{" "}
@@ -37,7 +37,7 @@ const HeroSection = () => {
                 1000,
                 "Web Developer",
                 1000,
-                "Full-stack Developer",
+                "Full Stack Developer",
                 1000,
                 "Cloud Specialist",
                 1000,
@@ -76,7 +76,7 @@ const HeroSection = () => {
             className={`rounded-full w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative ${imgColor}`}
           >
             <Image
-              src="/images/hero-image.png"
+              src="/images/avatar.png"
               alt="hero image"
               layout="fill"
               objectFit="cover"
