@@ -13,15 +13,37 @@ const ExperienceSection = () => {
 
   const settings = {
     infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    speed: 1000,
     arrows: false,
     dots: false,
     autoplay: true,
     autoplaySpeed: 5000,
-    fade: true,
+    swipeToSlide: false,
+    fade: false,
     pauseOnHover: false,
+    responsive: [
+      {
+        breakpoint: 9999,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 1536,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        }
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      },
+    ]
   };
 
   const experiences = [

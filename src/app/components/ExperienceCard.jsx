@@ -19,7 +19,7 @@ const ExperienceCard = ({
 
   return (
     <div
-      className="relative p-6 rounded-[1rem] text-center w-full max-w-xl mx-auto flex flex-col items-center space-y-4
+      className="relative md:p-6 rounded-[1rem] text-center w-full max-w-xl mx-auto flex flex-col items-center space-y-4
                     border-2 border-transparent"
     >
       {/* Company Icon */}
@@ -32,19 +32,19 @@ const ExperienceCard = ({
       </div>
 
       {/* Job Title and Company */}
-      <h3 className={`text-2xl font-semibold ${titleColor}`}>{title}</h3>
-      <h4 className={`text-lg font-semibold ${companyColor}`}>{company}</h4>
-      <p className={`text-sm ${durationColor}`}>{duration}</p>
+      <h3 className={`text-xl md:text-2xl font-semibold ${titleColor}`}>{title}</h3>
+      <h4 className={`text-base md:text-lg font-semibold ${companyColor}`}>{company}</h4>
+      <p className={`text-sm md:text-base ${durationColor}`}>{duration}</p>
 
       {/* Description */}
-      <p className={`mt-2 ${descriptionColor}`}>{description}</p>
+      <p className={`text-sm md:text-base mt-2 ${descriptionColor}`}>{description}</p>
 
       {/* Skill Tags */}
       <div className="flex flex-wrap justify-center gap-2 mt-4">
         {skills.map((skill, index) => (
           <span
             key={index}
-            className="inline-block bg-green-100 text-green-600 text-xs font-medium px-2 py-1 rounded-full"
+            className="inline-block bg-green-100 text-green-600 text-[9px] md:text-xs font-medium px-2 py-1 rounded-full"
           >
             {skill}
           </span>
