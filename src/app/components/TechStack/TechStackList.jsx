@@ -22,6 +22,7 @@ const buttonData = {
     { title: "GraphQL", color: "#E10098", icon: "graphql-plain" },
     { title: "Dart", color: "#0175C2", icon: "dart-plain" },
     { title: "Rust", color: "#F74C00", icon: "rust-original" },
+    { title: "Golang", color: "#00ADD8", icon: "go-original-wordmark" },
   ],
   cloud: [
     {
