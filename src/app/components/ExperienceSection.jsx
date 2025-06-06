@@ -66,15 +66,6 @@ const ExperienceSection = () => {
       skills: ["React", "Express.js", "Firebase", "Redux"],
     },
     {
-      title: "Full Stack Developer",
-      company: "Cyberlark Studio",
-      companyIcon: "/work/cyberlark.png",
-      duration: "Mar 2024 - Aug 2024",
-      description:
-        "Developed serverless backend solutions for a property CRM system using AWS CDK and TypeScript.",
-      skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
-    },
-    {
       title: "Research Assistant",
       company: "Mandala Partners",
       companyIcon: "/work/mandala_partners.jpg",
