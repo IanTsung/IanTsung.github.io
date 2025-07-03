@@ -13,7 +13,7 @@ const Footer = () => {
       <div className="flex justify-center items-center gap-4 md:gap-6 p-12">
         <span className="font-zolasixx text-xl md:text-2xl">IAN</span>
         <p className={`text-sm md:text-base ${textColor} font-sans`}>
-          2024 © All rights reserved.
+          {new Date().getFullYear()} © All rights reserved.
         </p>
       </div>
     </footer>
