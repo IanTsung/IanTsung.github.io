@@ -13,6 +13,7 @@ const buttonData = {
     { title: "Tailwind", color: "#06B6D4", icon: "tailwindcss-original" },
     { title: "SASS", color: "#CC6699", icon: "sass-original" },
     { title: "Flutter", color: "#02569B", icon: "flutter-plain" },
+    { title: "Phoenix", color: "#FD4F00", icon: "phoenix-plain" },
   ],
   backend: [
     { title: "Node.JS", color: "#339933", icon: "nodejs-plain-wordmark" },
@@ -23,6 +24,7 @@ const buttonData = {
     { title: "Dart", color: "#0175C2", icon: "dart-plain" },
     { title: "Rust", color: "#F74C00", icon: "rust-original" },
     { title: "Golang", color: "#00ADD8", icon: "go-original-wordmark" },
+    { title: "Elixir", color: "#4B275F", icon: "elixir-plain" },
   ],
   cloud: [
     {
@@ -40,7 +42,6 @@ const buttonData = {
   ],
   devops: [
     { title: "Docker", color: "#2496ED", icon: "docker-plain" },
-    { title: "Jenkins", color: "#D24939", icon: "jenkins-plain" },
     { title: "Kubernetes", color: "#326CE5", icon: "kubernetes-plain" },
   ],
 };
