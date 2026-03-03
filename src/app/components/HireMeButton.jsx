@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { gsap } from "gsap";
 
-const circleText = "Full Stack Developer  Web Developer  Cloud Specialist  ";
+const circleText = "Full Stack Developer  Software Engineer  Solutions Architect  ";
 
 const HireMeButton = () => {
   const darkMode = useSelector((state) => state.darkMode);
@@ -28,7 +28,7 @@ const HireMeButton = () => {
   }, []);
 
   return (
-    <div className="fixed bottom-5 right-5 sm:bottom-10 sm:right-10 flex items-center justify-center z-50">
+    <div className="hidden md:flex fixed bottom-5 right-5 sm:bottom-10 sm:right-10 items-center justify-center z-50">
       <div className="relative flex justify-center items-center">
         <div ref={circleTextRef} className="absolute">
           {circleText.split("").map((char, index) => (

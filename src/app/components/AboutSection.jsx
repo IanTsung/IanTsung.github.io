@@ -66,8 +66,8 @@ const AboutSection = () => {
           height={500}
         />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className={`text-4xl font-bold mb-4 ${textColor}`}>About Me</h2>
-          <p className="text-base lg:text-lg ">
+          <h2 className={`text-2xl lg:text-4xl font-bold mb-4 ${textColor}`}>About Me</h2>
+          <p className="text-sm lg:text-lg ">
             I am a full-stack web developer with a passion for creating
             interactive and responsive web applications. I have experience
             working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
@@ -75,7 +75,7 @@ const AboutSection = () => {
             looking to expand my knowledge and skill set. I am a team player and
             I am excited to work with others to create amazing applications.
           </p>
-          <div className="flex flex-row justify-start mt-8">
+          <div className="flex flex-row justify-start mt-8 text-sm lg:text-base">
             <TabButton
               selectTab={() => handleTabChange("education")}
               active={tab === "education"}
@@ -91,7 +91,7 @@ const AboutSection = () => {
               Certifications{" "}
             </TabButton>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 text-sm lg:text-base">
             {TAB_DATA.find((t) => t.id === tab).content}
           </div>
         </div>

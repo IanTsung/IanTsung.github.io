@@ -25,7 +25,7 @@ const HeroSection = () => {
           className="col-span-7 place-self-center text-center sm:text-left justify-self-start"
         >
           <h1
-            className={`mb-4 text-4xl sm:text-5xl lg:text-6xl 2xl:text-7xl lg:leading-tight font-extrabold ${textColor}`}
+            className={`mb-4 text-2xl sm:text-5xl lg:text-6xl 2xl:text-7xl lg:leading-tight font-extrabold ${textColor}`}
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-primary-500 to-secondary-500">
               Hello, I'm{" "}
@@ -35,11 +35,11 @@ const HeroSection = () => {
               sequence={[
                 "Ian",
                 1000,
-                "Web Developer",
+                "Software Engineer",
                 1000,
                 "Full Stack Developer",
                 1000,
-                "Cloud Specialist",
+                "Solutions Architect",
                 1000,
               ]}
               wrapper="span"
@@ -47,7 +47,7 @@ const HeroSection = () => {
               repeat={Infinity}
             />
           </h1>
-          <p className={`mb-6 text-base sm:text-lg lg:text-xl ${textColor}`}>
+          <p className={`mb-6 text-sm sm:text-lg lg:text-xl ${textColor}`}>
             As an experienced full-stack developer, I am dedicated to crafting
             clean, scalable code that powers business applications.
           </p>
@@ -57,7 +57,7 @@ const HeroSection = () => {
                 className={`group relative px-1 py-1 w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 bg-[length:200%_200%] animate-gradient-shift my-3 ${textColor} font-semibold transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)]`}
               >
                 <span
-                  className={`flex justify-center rounded-full px-5 py-2 ${buttonColor} transition-all duration-300 group-hover:bg-transparent group-hover:text-white`}
+                  className={`flex text-sm sm:text-lg lg:text-xl justify-center rounded-full px-5 py-2 ${buttonColor} transition-all duration-300 group-hover:bg-transparent group-hover:text-white`}
                 >
                   Download CV
                   <ArrowDownTrayIcon className="rounded-full ml-1 w-5 h-5" />
@@ -70,7 +70,7 @@ const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="col-span-5 place-self-center mt-4 lg:mt-0"
+          className="col-span-5 place-self-center mt-4 mb-10 sm:mb-0 lg:mt-0"
         >
           <div
             className={`rounded-full w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative ${imgColor}`}

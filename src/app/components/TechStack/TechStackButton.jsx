@@ -8,7 +8,7 @@ const TechStackButton = ({ title, color, icon, link }) => {
   return (
     <a href={link} target="_blank" rel="noopener noreferrer">
       <li
-        className={`relative grid place-items-center w-48 h-48 ${
+        className={`relative grid place-items-center w-[5.5rem] h-[5.5rem] md:w-48 md:h-48 ${
           darkMode ? "" : styles.light
         }`}
         style={{ "--color": color }}

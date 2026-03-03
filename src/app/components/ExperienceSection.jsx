@@ -78,7 +78,7 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience">
-      <h2 className={`text-center text-4xl font-bold mt-4 mb-12 ${textColor}`}>
+      <h2 className={`text-center text-3xl lg:text-4xl font-bold mt-4 mb-12 ${textColor}`}>
         Experience
       </h2>
       <Slider {...settings}>

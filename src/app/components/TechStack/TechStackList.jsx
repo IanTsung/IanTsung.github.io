@@ -53,10 +53,10 @@ const TechStackList = () => {
 
   return (
     <div>
-      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>
+      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
         Frontend
       </h3>
-      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
         {buttonData.frontend.map((button, index) => (
           <TechStackButton
             key={index}
@@ -68,10 +68,10 @@ const TechStackList = () => {
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>
+      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
         Backend
       </h3>
-      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
         {buttonData.backend.map((button, index) => (
           <TechStackButton
             key={index}
@@ -83,10 +83,10 @@ const TechStackList = () => {
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>
+      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
         Cloud Services
       </h3>
-      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
         {buttonData.cloud.map((button, index) => (
           <TechStackButton
             key={index}
@@ -98,10 +98,10 @@ const TechStackList = () => {
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>
+      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
         Database
       </h3>
-      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
         {buttonData.database.map((button, index) => (
           <TechStackButton
             key={index}
@@ -113,10 +113,10 @@ const TechStackList = () => {
         ))}
       </ul>
 
-      <h3 className={`text-center text-2xl my-12 font-semibold ${textColor}`}>
+      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
         DevOps
       </h3>
-      <ul className="flex flex-wrap items-center justify-center w-full gap-y-36 gap-x-24 mt-36">
+      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
         {buttonData.devops.map((button, index) => (
           <TechStackButton
             key={index}

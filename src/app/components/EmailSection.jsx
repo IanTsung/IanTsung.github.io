@@ -128,12 +128,12 @@ const EmailSection = () => {
       className="grid md:grid-cols-2 my-12 py-24 gap-4 relative"
     >
       <div className="z-10">
-        <h5 className={`text-xl font-bold my-2 ${textColor}`}>Let's Connect</h5>
-        <p className={`${contentColor} mb-4 max-w-md`}>
+        <h5 className={`text-lg lg:text-xl font-bold my-2 ${textColor}`}>Let's Connect</h5>
+        <p className={`text-sm lg:text-base ${contentColor} mb-4 max-w-md`}>
           {" "}
-          I'm currently looking for new opportunities, my inbox is always open.
-          Whether you have a question or just want to say hi, I'll try my best
-          to get back to you!
+          I’m always open to discussing new opportunities, collaborations, or interesting ideas. 
+          Feel free to reach out — whether you have a question or just want to connect. 
+          I’ll do my best to respond promptly.
         </p>
         <div className="socials flex flex-row gap-6">
           <Link
