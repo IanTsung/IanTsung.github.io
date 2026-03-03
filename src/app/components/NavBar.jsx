@@ -87,7 +87,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 transition-transform duration-700 ease-in-out ${bgColor} ${
+      className={`fixed mx-auto top-0 left-0 right-0 z-50 transition-transform duration-700 ease-in-out ${bgColor} ${
         showNav ? "translate-y-0" : "-translate-y-full"
       }`}
     >
