@@ -57,10 +57,10 @@ const HeroSection = () => {
                 className={`group relative px-1 py-1 w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 bg-[length:200%_200%] animate-gradient-shift my-3 ${textColor} font-semibold transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)]`}
               >
                 <span
-                  className={`flex text-sm sm:text-lg lg:text-xl justify-center rounded-full px-5 py-2 ${buttonColor} transition-all duration-300 group-hover:bg-transparent group-hover:text-white`}
+                  className={`flex text-sm sm:text-base justify-center items-center rounded-full px-5 py-2 ${buttonColor} transition-all duration-300 group-hover:bg-transparent group-hover:text-white`}
                 >
                   Download CV
-                  <ArrowDownTrayIcon className="rounded-full ml-1 w-5 h-5" />
+                  <ArrowDownTrayIcon className="rounded-full ml-1 w-4 h-4 sm:w-5 sm:h-5" />
                 </span>
               </button>
             </a>
