@@ -221,7 +221,7 @@ const EmailSection = () => {
           </div>
           <button
             type="submit"
-            className={`bg-primary-500 hover:bg-primary-600 text-white font-medium py-2.5 px-5 rounded-lg w-full sm:w-1/3 ${
+            className={`bg-gradient-to-r from-blue-500 via-primary-500 to-secondary-500 bg-[length:200%_200%] animate-gradient-shift text-white font-medium py-2.5 px-5 rounded-lg w-full sm:w-1/3 transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)] ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >

@@ -54,10 +54,10 @@ const HeroSection = () => {
           <div>
             <a target="_blank" rel="noopener noreferrer" href="/Cong_CV.pdf">
               <button
-                className={`px-1 py-1 w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 hover:bg-slate-800 my-3 ${textColor} font-semibold`}
+                className={`group relative px-1 py-1 w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 bg-[length:200%_200%] animate-gradient-shift my-3 ${textColor} font-semibold transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)]`}
               >
                 <span
-                  className={`flex justify-center rounded-full px-5 py-2 ${buttonColor}`}
+                  className={`flex justify-center rounded-full px-5 py-2 ${buttonColor} transition-all duration-300 group-hover:bg-transparent group-hover:text-white`}
                 >
                   Download CV
                   <ArrowDownTrayIcon className="rounded-full ml-1 w-5 h-5" />
