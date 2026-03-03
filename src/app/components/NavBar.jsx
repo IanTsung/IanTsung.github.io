@@ -37,6 +37,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const [navBarOpen, setNavBarOpen] = useState(false);
+  const [showNav, setShowNav] = useState(false);
 
   const switchBorderColor = darkMode ? "border-white" : "border-slate-700";
   const bgColor = darkMode ? "bg-[#121212]" : "bg-slate-50";
@@ -47,6 +48,17 @@ const NavBar = () => {
   const buttonColor = darkMode
     ? "border-slate-200 text-slate-200 hover:text-white hover:border-white"
     : "border-slate-700 text-slate-700 hover:text-black hover:border-black";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowNav(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,7 +87,9 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 ${bgColor}`}
+      className={`fixed mx-auto border-b border-[#33353F] top-0 left-0 right-0 z-50 transition-transform duration-700 ease-in-out ${bgColor} ${
+        showNav ? "translate-y-0" : "-translate-y-full"
+      }`}
     >
       <div className="grid grid-cols-3 place-items-center w-full mx-auto px-6 py-4 md:px-20 md:py-6">
         <div className="mobile-menu block xl:hidden">
