@@ -176,7 +176,7 @@ const NavBar = () => {
           </button>
         </div>
       </div>
-      {navBarOpen ? <MenuOverlay links={navLinks} /> : null}
+      <MenuOverlay links={navLinks} isOpen={navBarOpen} />
     </nav>
   );
 };
