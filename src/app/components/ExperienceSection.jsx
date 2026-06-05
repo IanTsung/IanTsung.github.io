@@ -25,7 +25,7 @@ const ExperienceSection = () => {
       {
         breakpoint: 9999,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
         }
       },
@@ -55,15 +55,6 @@ const ExperienceSection = () => {
       description:
         "Responsible for serverless backend development, using AWS CDK and TypeScript.",
       skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Qixin Co Pty Ltd",
-      companyIcon: "/work/qixin.png",
-      duration: "Sep 2024 - Oct 2024",
-      description:
-        "Spearheaded both backend and frontend development, using React, Express.js, and Firebase.",
-      skills: ["React", "Express.js", "Firebase", "Redux"],
     },
     {
       title: "Research Assistant",
