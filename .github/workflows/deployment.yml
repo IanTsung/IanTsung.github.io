@@ -1,16 +1,25 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Which version to deploy'
+        required: true
+        default: 'v2'
+        type: choice
+        options:
+          - v2
+          - v1
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout the repository
+      - name: Checkout the selected version
         uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.version }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
