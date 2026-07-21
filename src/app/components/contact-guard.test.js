@@ -6,7 +6,6 @@ import {
   clearCooldown,
   clearCooldownIfExpired,
   getCooldownRemainingMs,
-  hasValidCaptchaToken,
   isHoneypotTriggered,
   isOnCooldown,
   startCooldown,
@@ -147,30 +146,5 @@ describe("isHoneypotTriggered", () => {
   it("returns false when the form is null/undefined", () => {
     expect(isHoneypotTriggered(null)).toBe(false);
     expect(isHoneypotTriggered(undefined)).toBe(false);
-  });
-});
-
-describe("hasValidCaptchaToken", () => {
-  it("returns true for any non-empty string", () => {
-    expect(hasValidCaptchaToken("03AGdBq...")).toBe(true);
-  });
-
-  it("returns false for null / undefined", () => {
-    expect(hasValidCaptchaToken(null)).toBe(false);
-    expect(hasValidCaptchaToken(undefined)).toBe(false);
-  });
-
-  it("returns false for an empty string", () => {
-    expect(hasValidCaptchaToken("")).toBe(false);
-  });
-
-  it("returns false for whitespace-only", () => {
-    expect(hasValidCaptchaToken("   ")).toBe(false);
-  });
-
-  it("returns false for non-string types", () => {
-    expect(hasValidCaptchaToken(123)).toBe(false);
-    expect(hasValidCaptchaToken({})).toBe(false);
-    expect(hasValidCaptchaToken(true)).toBe(false);
   });
 });

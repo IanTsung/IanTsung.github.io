@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import ReCAPTCHA from "react-google-recaptcha";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
@@ -14,14 +13,10 @@ import {
   HONEYPOT_FIELD,
   clearCooldownIfExpired,
   getCooldownRemainingMs,
-  hasValidCaptchaToken,
   isHoneypotTriggered,
   isOnCooldown,
   startCooldown,
 } from "./contact-guard";
-import { useTheme } from "./ThemeProvider";
-
-const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
 
 const inputCls =
   "w-full bg-apple-surface border border-apple-line-strong rounded-xl px-4 py-3 text-apple-text placeholder:text-apple-dim/70 outline-none focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/30 transition";
@@ -38,14 +33,11 @@ const honeypotStyle = {
 
 const EmailSection = () => {
   const form = useRef();
-  const captchaRef = useRef(null);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const { theme } = useTheme();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cooldown, setCooldown] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState(null);
 
   // Restore cooldown from localStorage on mount so refresh cannot bypass it.
   useEffect(() => {
@@ -66,11 +58,6 @@ const EmailSection = () => {
       pauseOnHover: true,
       draggable: true,
     });
-
-  const resetCaptcha = () => {
-    captchaRef.current?.reset();
-    setCaptchaToken(null);
-  };
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -102,12 +89,6 @@ const EmailSection = () => {
       return;
     }
 
-    // reCAPTCHA gate — only enforce when a site key is configured.
-    if (RECAPTCHA_SITE_KEY && !hasValidCaptchaToken(captchaToken)) {
-      notify("warn", "Please complete the CAPTCHA before sending.");
-      return;
-    }
-
     setIsSubmitting(true);
 
     emailjs
@@ -132,14 +113,8 @@ const EmailSection = () => {
       )
       .finally(() => {
         setIsSubmitting(false);
-        resetCaptcha();
       });
   };
-
-  const submitDisabled =
-    isSubmitting ||
-    cooldown ||
-    (Boolean(RECAPTCHA_SITE_KEY) && !hasValidCaptchaToken(captchaToken));
 
   return (
     <section
@@ -271,25 +246,11 @@ const EmailSection = () => {
                 className={inputCls}
               />
             </div>
-
-            {RECAPTCHA_SITE_KEY && (
-              <div>
-                <ReCAPTCHA
-                  ref={captchaRef}
-                  sitekey={RECAPTCHA_SITE_KEY}
-                  theme={theme === "light" ? "light" : "dark"}
-                  onChange={setCaptchaToken}
-                  onExpired={() => setCaptchaToken(null)}
-                  onErrored={() => setCaptchaToken(null)}
-                />
-              </div>
-            )}
-
             <button
               type="submit"
-              disabled={submitDisabled}
+              disabled={isSubmitting || cooldown}
               className={`btn-primary w-full sm:w-auto inline-flex justify-center ${
-                submitDisabled ? "opacity-60 cursor-not-allowed" : ""
+                isSubmitting || cooldown ? "opacity-60 cursor-not-allowed" : ""
               }`}
             >
               {isSubmitting ? "Sending…" : "Send message"}

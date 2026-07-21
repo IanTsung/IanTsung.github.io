@@ -59,7 +59,3 @@ export function isHoneypotTriggered(form) {
   const value = typeof field?.value === "string" ? field.value : "";
   return value.trim().length > 0;
 }
-
-export function hasValidCaptchaToken(token) {
-  return typeof token === "string" && token.trim().length > 0;
-}
