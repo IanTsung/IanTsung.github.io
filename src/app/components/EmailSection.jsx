@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,9 +8,28 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import GithubIcon from "../../../public/github.svg";
 import LinkedInIcon from "../../../public/linkedin.svg";
+import {
+  COOLDOWN_MS,
+  HONEYPOT_FIELD,
+  clearCooldownIfExpired,
+  getCooldownRemainingMs,
+  isHoneypotTriggered,
+  isOnCooldown,
+  startCooldown,
+} from "./contact-guard";
 
 const inputCls =
   "w-full bg-apple-surface border border-apple-line-strong rounded-xl px-4 py-3 text-apple-text placeholder:text-apple-dim/70 outline-none focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/30 transition";
+
+const honeypotStyle = {
+  position: "absolute",
+  left: "-9999px",
+  top: "auto",
+  width: "1px",
+  height: "1px",
+  overflow: "hidden",
+  opacity: 0,
+};
 
 const EmailSection = () => {
   const form = useRef();
@@ -19,6 +38,16 @@ const EmailSection = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cooldown, setCooldown] = useState(false);
+
+  // Restore cooldown from localStorage on mount so refresh cannot bypass it.
+  useEffect(() => {
+    clearCooldownIfExpired();
+    if (!isOnCooldown()) return;
+    setCooldown(true);
+    const remaining = getCooldownRemainingMs();
+    const t = setTimeout(() => setCooldown(false), remaining);
+    return () => clearTimeout(t);
+  }, []);
 
   const notify = (kind, message) =>
     toast[kind](message, {
@@ -33,6 +62,11 @@ const EmailSection = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
+    // Honeypot: bots often auto-fill any input they can see. Silently drop.
+    if (isHoneypotTriggered(form.current)) {
+      return;
+    }
+
     const fields = {
       name: form.current.from_name.value,
       email: form.current.from_email.value,
@@ -46,12 +80,12 @@ const EmailSection = () => {
       return;
     }
 
-    if (isSubmitting || cooldown) {
-      if (cooldown)
-        notify(
-          "warn",
-          "You just sent an email — please wait a minute before sending another."
-        );
+    if (isSubmitting || cooldown || isOnCooldown()) {
+      notify(
+        "warn",
+        "You just sent an email — please wait a minute before sending another."
+      );
+      setCooldown(true);
       return;
     }
 
@@ -65,7 +99,12 @@ const EmailSection = () => {
         { publicKey: process.env.NEXT_PUBLIC_EMAILJS_USER_ID }
       )
       .then(
-        () => notify("success", "Thank you for reaching out!"),
+        () => {
+          notify("success", "Thank you for reaching out!");
+          startCooldown();
+          setCooldown(true);
+          setTimeout(() => setCooldown(false), COOLDOWN_MS);
+        },
         () =>
           notify(
             "error",
@@ -74,8 +113,6 @@ const EmailSection = () => {
       )
       .finally(() => {
         setIsSubmitting(false);
-        setCooldown(true);
-        setTimeout(() => setCooldown(false), 60000);
       });
   };
 
@@ -135,8 +172,20 @@ const EmailSection = () => {
             initial={{ opacity: 0, y: 32 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="card p-8 md:p-10 space-y-5"
+            className="card p-8 md:p-10 space-y-5 relative"
           >
+            {/* Honeypot — hidden from humans, tempting for bots */}
+            <div style={honeypotStyle} aria-hidden="true">
+              <label htmlFor={HONEYPOT_FIELD}>Leave this field empty</label>
+              <input
+                type="text"
+                name={HONEYPOT_FIELD}
+                id={HONEYPOT_FIELD}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+
             <div>
               <label
                 htmlFor="name"
@@ -199,9 +248,9 @@ const EmailSection = () => {
             </div>
             <button
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || cooldown}
               className={`btn-primary w-full sm:w-auto inline-flex justify-center ${
-                isSubmitting ? "opacity-60 cursor-not-allowed" : ""
+                isSubmitting || cooldown ? "opacity-60 cursor-not-allowed" : ""
               }`}
             >
               {isSubmitting ? "Sending…" : "Send message"}
