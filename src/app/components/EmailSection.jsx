@@ -95,7 +95,7 @@ const EmailSection = () => {
             <h2 className="apple-heading text-4xl md:text-5xl lg:text-6xl">
               Let&apos;s make
               <br />
-              <span className="text-apple-dim">something great.</span>
+              <span className="text-apple-dim">something great</span>
             </h2>
             <p className="mt-6 text-lg text-apple-dim max-w-md leading-relaxed">
               I&apos;m open to new opportunities, collaborations, or a quick

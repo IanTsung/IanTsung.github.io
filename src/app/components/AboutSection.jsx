@@ -29,9 +29,9 @@ const AboutSection = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="apple-heading text-center text-4xl md:text-5xl lg:text-6xl mb-6"
         >
-          Building for the web.
+          Building for the web
           <br />
-          <span className="text-apple-dim">Front to back.</span>
+          <span className="text-apple-dim">Front to back</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}

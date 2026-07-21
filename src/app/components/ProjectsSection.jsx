@@ -57,7 +57,7 @@ const ProjectsSection = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="apple-heading text-center text-4xl md:text-5xl lg:text-6xl mb-12"
         >
-          Projects worth a look.
+          Projects worth a look
         </motion.h2>
 
         <motion.div

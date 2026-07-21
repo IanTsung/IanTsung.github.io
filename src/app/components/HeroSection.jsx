@@ -48,10 +48,10 @@ const HeroSection = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="apple-heading text-apple-text text-[44px] sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          Software.
+          Software
           <br />
           <span className="bg-gradient-to-b from-apple-text to-apple-text/60 bg-clip-text text-transparent">
-            Redefined.
+            Redefined
           </span>
         </motion.h1>
 

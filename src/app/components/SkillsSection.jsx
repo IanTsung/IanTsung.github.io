@@ -24,7 +24,7 @@ const SkillsSection = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="apple-heading text-center text-4xl md:text-5xl lg:text-6xl mb-4"
         >
-          A well-stocked toolbox.
+          A well-stocked toolbox
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }}

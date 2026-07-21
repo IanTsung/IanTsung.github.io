@@ -45,7 +45,7 @@ const ExperienceSection = () => {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="apple-heading text-center text-4xl md:text-5xl lg:text-6xl mb-20"
         >
-          Where I&apos;ve been.
+          Where I&apos;ve been
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-6">
