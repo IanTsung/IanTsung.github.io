@@ -1,91 +1,106 @@
 "use client";
-import React from "react";
-import Image from "next/image";
-import { useSelector } from "react-redux";
-import { TypeAnimation } from "react-type-animation";
-import { motion } from "framer-motion";
-import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
+import React, { useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  animate,
+} from "framer-motion";
+import { ArrowDownTrayIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 
 const HeroSection = () => {
-  const darkMode = useSelector((state) => state.darkMode);
+  const { scrollY } = useScroll();
+  const scrollOpacity = useTransform(scrollY, [0, 240], [1, 0]);
+  const scrollTranslateY = useTransform(scrollY, [0, 240], [0, 24]);
 
-  const textColor = darkMode ? "text-white" : "text-slate-900";
-  const buttonColor = darkMode
-    ? "bg-[#121212] hover:bg-slate-800"
-    : "bg-slate-50 hover:bg-gray-200";
-  const imgColor = darkMode ? "bg-[#181818]" : "bg-slate-200";
+  const enter = useMotionValue(0);
+  const hintOpacity = useTransform(
+    [enter, scrollOpacity],
+    ([e, s]) => e * s
+  );
+
+  useEffect(() => {
+    const controls = animate(enter, 1, {
+      delay: 0.9,
+      duration: 0.6,
+      ease: "easeOut",
+    });
+    return () => controls.stop();
+  }, [enter]);
 
   return (
-    <section className="lg:py-16">
-      <div className="grid grid-cols-1 sm:grid-cols-12">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="col-span-7 place-self-center text-center sm:text-left justify-self-start"
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Subtle radial glow behind the copy */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.14), transparent 70%)",
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="apple-heading text-apple-text text-[44px] sm:text-6xl md:text-7xl lg:text-8xl"
         >
-          <h1
-            className={`mb-4 text-2xl sm:text-5xl lg:text-6xl 2xl:text-7xl lg:leading-tight font-extrabold ${textColor}`}
+          Software.
+          <br />
+          <span className="bg-gradient-to-b from-apple-text to-apple-text/60 bg-clip-text text-transparent">
+            Redefined.
+          </span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-6 text-lg md:text-xl lg:text-2xl text-apple-dim max-w-2xl mx-auto leading-snug"
+        >
+          Full-stack engineer crafting clean, scalable systems.
+          Currently building serverless products at Viva Leisure.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-10 flex flex-wrap justify-center gap-3"
+        >
+          <a
+            href="#projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document
+                .querySelector("#projects")
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="btn-primary inline-flex items-center gap-1"
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-primary-500 to-secondary-500">
-              Hello, I'm{" "}
-            </span>
-            <br />
-            <TypeAnimation
-              sequence={[
-                "Ian",
-                1000,
-                "Software Engineer",
-                1000,
-                "Full Stack Developer",
-                1000,
-                "Solutions Architect",
-                1000,
-              ]}
-              wrapper="span"
-              speed={20}
-              repeat={Infinity}
-            />
-          </h1>
-          <p className={`mb-6 text-sm sm:text-lg lg:text-xl ${textColor}`}>
-            As an experienced full-stack developer, I am dedicated to crafting
-            clean, scalable code that powers business applications.
-          </p>
-          <div>
-            <a target="_blank" rel="noopener noreferrer" href="/Cong_CV.pdf">
-              <button
-                className={`group relative px-1 py-1 w-fit rounded-full bg-gradient-to-br from-blue-500 via-primary-500 to-secondary-500 bg-[length:200%_200%] animate-gradient-shift my-3 ${textColor} font-semibold transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)]`}
-              >
-                <span
-                  className={`flex text-sm sm:text-base justify-center items-center rounded-full px-5 py-2 ${buttonColor} transition-all duration-300 group-hover:bg-transparent group-hover:text-white`}
-                >
-                  Download CV
-                  <ArrowDownTrayIcon className="rounded-full ml-1 w-4 h-4 sm:w-5 sm:h-5" />
-                </span>
-              </button>
-            </a>
-          </div>
+            See my work
+            <span aria-hidden="true">›</span>
+          </a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="/Cong_CV.pdf"
+            className="btn-ghost inline-flex items-center gap-2"
+          >
+            Download CV
+            <ArrowDownTrayIcon className="w-4 h-4" />
+          </a>
         </motion.div>
+
         <motion.div
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="col-span-5 place-self-center mt-4 mb-10 sm:mb-0 lg:mt-0"
+          style={{ opacity: hintOpacity, y: scrollTranslateY }}
+          className="mt-24 hidden md:flex flex-col items-center gap-2 text-apple-dim"
         >
-          <div
-            className={`rounded-full w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] relative ${imgColor}`}
-          >
-            <Image
-              src="/images/avatar.png"
-              alt="hero image"
-              layout="fill"
-              objectFit="cover"
-              className="rounded-full"
-              // className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-              // width={275}
-              // height={275}
-            />
-          </div>
+          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+          <ChevronDownIcon className="w-4 h-4 scroll-hint" />
         </motion.div>
       </div>
     </section>

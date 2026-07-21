@@ -1,30 +1,17 @@
+"use client";
 import React from "react";
-import { useSelector } from "react-redux";
-import styles from "./TechStackButton.module.css"; // Import the CSS module
+import styles from "./TechStackButton.module.css";
 
-const TechStackButton = ({ title, color, icon, link }) => {
-  const darkMode = useSelector((state) => state.darkMode);
-
+const TechStackButton = ({ title, color, icon }) => {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer">
-      <li
-        className={`relative grid place-items-center w-[5.5rem] h-[5.5rem] md:w-48 md:h-48 ${
-          darkMode ? "" : styles.light
-        }`}
-        style={{ "--color": color }}
-      >
-        {/* Base Circle */}
-        <span className={styles.base}></span>
-
-        {/* Title */}
-        <span className={styles.title}>{title}</span>
-
-        {/* Icon */}
-        <span className={styles.icon}>
-          <i className={`devicon-${icon}`}></i>
-        </span>
-      </li>
-    </a>
+    <div className={styles.tile} style={{ "--color": color }}>
+      <span className={styles.base} aria-hidden="true" />
+      <span className={styles.title}>{title}</span>
+      <span className={styles.icon}>
+        <i className={`devicon-${icon}`} aria-hidden="true" />
+      </span>
+      <span className="sr-only">{title}</span>
+    </div>
   );
 };
 

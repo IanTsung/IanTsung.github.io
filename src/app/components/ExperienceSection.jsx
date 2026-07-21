@@ -1,90 +1,70 @@
 "use client";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import React from "react";
-import Slider from "react-slick";
-import { useSelector } from "react-redux";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import ExperienceCard from "./ExperienceCard";
 
+const experiences = [
+  {
+    title: "Back End Developer",
+    company: "Viva Leisure",
+    companyIcon: "/work/viva_leisure.jpg",
+    duration: "Oct 2024 — Present",
+    description:
+      "Serverless backend engineering with AWS CDK and TypeScript. Building the platform behind Australia's fastest-growing health clubs.",
+    skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
+  },
+  {
+    title: "Research Assistant",
+    company: "Mandala Partners",
+    companyIcon: "/work/mandala_partners.jpg",
+    duration: "Feb 2024 — Jun 2024",
+    description:
+      "Built a zero-shot learning tool for economic analysis of corporate documents on AWS SageMaker.",
+    skills: ["AWS SageMaker", "Python", "NLP", "Zero-shot Learning"],
+  },
+];
+
 const ExperienceSection = () => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const textColor = darkMode ? "text-white" : "text-slate-800";
-
-  const settings = {
-    infinite: true,
-    speed: 1000,
-    arrows: false,
-    dots: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    swipeToSlide: false,
-    fade: false,
-    pauseOnHover: false,
-    responsive: [
-      {
-        breakpoint: 9999,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 1536,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
-      },
-      {
-        breakpoint: 1280,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
-      },
-    ]
-  };
-
-  const experiences = [
-    {
-      title: "Back End Developer",
-      company: "Viva Leisure",
-      companyIcon: "/work/viva_leisure.jpg",
-      duration: "Oct 2024 - Present",
-      description:
-        "Responsible for serverless backend development, using AWS CDK and TypeScript.",
-      skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
-    },
-    {
-      title: "Research Assistant",
-      company: "Mandala Partners",
-      companyIcon: "/work/mandala_partners.jpg",
-      duration: "Feb 2024 - Jun 2024",
-      description:
-        "Responsible for the development of a zero-shot learning tool for economic analysis of corporate documents.",
-      skills: ["AWS SageMaker", "Python", "NLP", "Zero-shot Learning"],
-    },
-  ];
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="experience">
-      <h2 className={`text-center text-3xl lg:text-4xl font-bold mt-4 mb-12 ${textColor}`}>
-        Experience
-      </h2>
-      <Slider {...settings}>
-        {experiences.map((experience, index) => (
-          <ExperienceCard
-            key={index}
-            title={experience.title}
-            company={experience.company}
-            companyIcon={experience.companyIcon}
-            duration={experience.duration}
-            description={experience.description}
-            skills={experience.skills}
-          />
-        ))}
-      </Slider>
+    <section id="experience" className="py-32 md:py-40 px-6">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="apple-eyebrow text-center mb-4"
+        >
+          Experience
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="apple-heading text-center text-4xl md:text-5xl lg:text-6xl mb-20"
+        >
+          Where I&apos;ve been.
+        </motion.h2>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={exp.company}
+              initial={{ opacity: 0, y: 32 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{
+                duration: 0.8,
+                delay: 0.15 + i * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+            >
+              <ExperienceCard {...exp} />
+            </motion.div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

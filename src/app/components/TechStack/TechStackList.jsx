@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { useSelector } from "react-redux";
-import TechStackButton from "./TechStackButton"; // Import the button component
+import { motion } from "framer-motion";
+import TechStackButton from "./TechStackButton";
 
 const buttonData = {
-  frontend: [
+  Frontend: [
     { title: "HTML", color: "#E34F26", icon: "html5-plain" },
     { title: "CSS", color: "#1572B6", icon: "css3-plain" },
     { title: "TypeScript", color: "#3178C6", icon: "typescript-plain" },
@@ -15,118 +15,64 @@ const buttonData = {
     { title: "Flutter", color: "#02569B", icon: "flutter-plain" },
     { title: "Phoenix", color: "#FD4F00", icon: "phoenix-plain" },
   ],
-  backend: [
+  Backend: [
     { title: "Node.JS", color: "#339933", icon: "nodejs-plain-wordmark" },
-    { title: "Express", color: "#888888", icon: "express-original" },
+    { title: "Express", color: "#CCCCCC", icon: "express-original" },
     { title: "Django", color: "#44B78B", icon: "django-plain" },
-    { title: "ASP.NET", color: "#512BD4", icon: "dotnetcore-plain" },
+    { title: "ASP.NET", color: "#8A63FF", icon: "dotnetcore-plain" },
     { title: "GraphQL", color: "#E10098", icon: "graphql-plain" },
     { title: "Dart", color: "#0175C2", icon: "dart-plain" },
     { title: "Rust", color: "#F74C00", icon: "rust-original" },
     { title: "Golang", color: "#00ADD8", icon: "go-original-wordmark" },
-    { title: "Elixir", color: "#4B275F", icon: "elixir-plain" },
+    { title: "Elixir", color: "#8B5CF6", icon: "elixir-plain" },
   ],
-  cloud: [
-    {
-      title: "AWS",
-      color: "#FF9900",
-      icon: "amazonwebservices-plain-wordmark",
-    },
+  Cloud: [
+    { title: "AWS", color: "#FF9900", icon: "amazonwebservices-plain-wordmark" },
     { title: "Azure", color: "#0089D6", icon: "azure-plain" },
     { title: "GCP", color: "#4285F4", icon: "googlecloud-plain" },
   ],
-  database: [
+  Database: [
     { title: "MongoDB", color: "#47A248", icon: "mongodb-plain" },
     { title: "DynamoDB", color: "#4053D6", icon: "dynamodb-plain" },
-    { title: "PostgreSQL", color: "#336791", icon: "postgresql-plain" },
+    { title: "PostgreSQL", color: "#4479A1", icon: "postgresql-plain" },
   ],
-  devops: [
+  DevOps: [
     { title: "Docker", color: "#2496ED", icon: "docker-plain" },
     { title: "Kubernetes", color: "#326CE5", icon: "kubernetes-plain" },
   ],
 };
 
-const TechStackList = () => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const textColor = darkMode ? "text-white" : "text-slate-800";
-
+const TechStackList = ({ inView }) => {
   return (
-    <div>
-      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
-        Frontend
-      </h3>
-      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
-        {buttonData.frontend.map((button, index) => (
-          <TechStackButton
-            key={index}
-            title={button.title}
-            color={button.color}
-            icon={button.icon}
-            link={button.link}
-          />
-        ))}
-      </ul>
-
-      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
-        Backend
-      </h3>
-      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
-        {buttonData.backend.map((button, index) => (
-          <TechStackButton
-            key={index}
-            title={button.title}
-            color={button.color}
-            icon={button.icon}
-            link={button.link}
-          />
-        ))}
-      </ul>
-
-      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
-        Cloud Services
-      </h3>
-      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
-        {buttonData.cloud.map((button, index) => (
-          <TechStackButton
-            key={index}
-            title={button.title}
-            color={button.color}
-            icon={button.icon}
-            link={button.link}
-          />
-        ))}
-      </ul>
-
-      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
-        Database
-      </h3>
-      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
-        {buttonData.database.map((button, index) => (
-          <TechStackButton
-            key={index}
-            title={button.title}
-            color={button.color}
-            icon={button.icon}
-            link={button.link}
-          />
-        ))}
-      </ul>
-
-      <h3 className={`text-center text-2xl my-14 font-semibold ${textColor}`}>
-        DevOps
-      </h3>
-      <ul className="grid grid-cols-2 gap-y-14 place-items-center w-full mt-12 md:flex md:flex-wrap md:items-center md:justify-center md:gap-y-36 md:gap-x-24 md:mt-36">
-        {buttonData.devops.map((button, index) => (
-          <TechStackButton
-            key={index}
-            title={button.title}
-            color={button.color}
-            icon={button.icon}
-            link={button.link}
-          />
-        ))}
-      </ul>
+    <div className="space-y-16">
+      {Object.entries(buttonData).map(([category, items], groupIndex) => (
+        <div key={category}>
+          <motion.h3
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 + groupIndex * 0.05 }}
+            className="text-xs uppercase tracking-[0.2em] text-apple-dim"
+          >
+            {category}
+          </motion.h3>
+          <ul className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-x-4 gap-y-12 md:gap-y-20 pt-16 md:pt-24">
+            {items.map((btn, i) => (
+              <motion.li
+                key={btn.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.15 + groupIndex * 0.05 + i * 0.03,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <TechStackButton {...btn} />
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

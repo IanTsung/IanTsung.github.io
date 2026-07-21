@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const colors = require('tailwindcss/colors');
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,35 +7,51 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
       fontFamily: {
-        'zolasixx': ['zolasixx', 'sans-serif']
+        zolasixx: ["zolasixx", "sans-serif"],
+        display: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "SF Pro Display",
+          "Helvetica Neue",
+          "Helvetica",
+          "Arial",
+          "sans-serif",
+        ],
       },
       colors: {
-        ...colors,
-        primary: colors.purple,
-        secondary: colors.pink
+        apple: {
+          bg: "rgb(var(--apple-bg-rgb) / <alpha-value>)",
+          surface: "rgb(var(--apple-surface-rgb) / <alpha-value>)",
+          surface2: "rgb(var(--apple-surface2-rgb) / <alpha-value>)",
+          elev: "rgb(var(--apple-elev-rgb) / <alpha-value>)",
+          text: "rgb(var(--apple-text-rgb) / <alpha-value>)",
+          dim: "rgb(var(--apple-dim-rgb) / <alpha-value>)",
+          blue: "rgb(var(--apple-blue-rgb) / <alpha-value>)",
+          "blue-hover": "rgb(var(--apple-blue-hover-rgb) / <alpha-value>)",
+          line: "var(--apple-line)",
+          "line-strong": "var(--apple-line-strong)",
+          "tint-a": "var(--apple-tint-a)",
+          "tint-b": "var(--apple-tint-b)",
+        },
+      },
+      letterSpacing: {
+        tightest: "-0.03em",
       },
       animation: {
-        blob: 'blob 7s ease-in-out infinite',
-        'gradient-shift': 'gradient-shift 4s ease infinite',
+        "fade-up": "fadeUp 0.8s ease-out both",
+        "fade-in": "fadeIn 0.8s ease-out both",
       },
       keyframes: {
-        blob: {
-          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '25%': { transform: 'translate(160px, -120px) scale(1.1)' },
-          '50%': { transform: 'translate(-100px, 100px) scale(0.92)' },
-          '75%': { transform: 'translate(120px, 160px) scale(1.08)' },
+        fadeUp: {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        'gradient-shift': {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
-      }
+      },
     },
   },
   plugins: [],

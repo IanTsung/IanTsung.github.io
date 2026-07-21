@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { useSelector } from "react-redux";
 
 const ExperienceCard = ({
   title,
@@ -10,47 +9,42 @@ const ExperienceCard = ({
   description,
   skills,
 }) => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const titleColor = darkMode ? "text-white" : "text-gray-800";
-  const companyColor = darkMode ? "text-gray-300" : "text-gray-600";
-  const durationColor = darkMode ? "text-gray-300" : "text-gray-600";
-  const descriptionColor = darkMode ? "text-gray-300" : "text-gray-600";
-
   return (
-    <div
-      className="relative md:p-6 rounded-[1rem] text-center w-full max-w-xl mx-auto flex flex-col items-center space-y-4
-                    border-2 border-transparent"
-    >
-      {/* Company Icon */}
-      <div className="w-20 h-20 flex items-center justify-center rounded-full overflow-hidden">
-        <img
-          src={companyIcon}
-          alt={`${company} logo`}
-          className="w-full h-full object-fill"
-        />
+    <article className="card p-8 md:p-10 h-full flex flex-col group transition-transform duration-500 hover:-translate-y-1">
+      <div className="flex items-center gap-4">
+        <div className="w-14 h-14 rounded-2xl overflow-hidden bg-apple-elev shrink-0">
+          <img
+            src={companyIcon}
+            alt={`${company} logo`}
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="min-w-0">
+          <h3 className="text-lg md:text-xl font-semibold text-apple-text truncate">
+            {company}
+          </h3>
+          <p className="text-sm text-apple-dim">{duration}</p>
+        </div>
       </div>
 
-      {/* Job Title and Company */}
-      <h3 className={`text-xl md:text-2xl font-semibold ${titleColor}`}>{title}</h3>
-      <h4 className={`text-base md:text-lg font-semibold ${companyColor}`}>{company}</h4>
-      <p className={`text-sm md:text-base ${durationColor}`}>{duration}</p>
+      <h4 className="mt-6 text-2xl md:text-3xl apple-heading text-apple-text">
+        {title}
+      </h4>
+      <p className="mt-3 text-apple-dim text-base leading-relaxed flex-grow">
+        {description}
+      </p>
 
-      {/* Description */}
-      <p className={`text-sm md:text-base mt-2 ${descriptionColor}`}>{description}</p>
-
-      {/* Skill Tags */}
-      <div className="flex flex-wrap justify-center gap-2 mt-4">
-        {skills.map((skill, index) => (
+      <div className="flex flex-wrap gap-2 mt-6">
+        {skills.map((skill) => (
           <span
-            key={index}
-            className="inline-block bg-green-100 text-green-600 text-[9px] md:text-xs font-medium px-2 py-1 rounded-full"
+            key={skill}
+            className="text-xs text-apple-text/85 bg-apple-tint-b border border-apple-line rounded-full px-3 py-1"
           >
             {skill}
           </span>
         ))}
       </div>
-    </div>
+    </article>
   );
 };
 

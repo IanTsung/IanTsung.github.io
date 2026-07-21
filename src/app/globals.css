@@ -3,27 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  /* rgb triplets (used by tailwind alpha modifiers) */
+  --apple-bg-rgb: 0 0 0;
+  --apple-surface-rgb: 29 29 31;
+  --apple-surface2-rgb: 22 22 23;
+  --apple-elev-rgb: 42 42 44;
+  --apple-text-rgb: 245 245 247;
+  --apple-dim-rgb: 134 134 139;
+  --apple-blue-rgb: 41 151 255;
+  --apple-blue-hover-rgb: 0 113 227;
+
+  /* fully-resolved css colors (used inside rules that don't want opacity) */
+  --apple-bg: rgb(var(--apple-bg-rgb));
+  --apple-surface: rgb(var(--apple-surface-rgb));
+  --apple-surface-2: rgb(var(--apple-surface2-rgb));
+  --apple-elev: rgb(var(--apple-elev-rgb));
+  --apple-text: rgb(var(--apple-text-rgb));
+  --apple-text-dim: rgb(var(--apple-dim-rgb));
+  --apple-blue: rgb(var(--apple-blue-rgb));
+  --apple-blue-hover: rgb(var(--apple-blue-hover-rgb));
+
+  --apple-line: rgba(255, 255, 255, 0.08);
+  --apple-line-strong: rgba(255, 255, 255, 0.18);
+  --apple-tint-a: rgba(255, 255, 255, 0.03);
+  --apple-tint-b: rgba(255, 255, 255, 0.06);
+
+  --icon-invert: invert(100%) brightness(2);
+
+  color-scheme: dark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html.light {
+  --apple-bg-rgb: 251 251 253;
+  --apple-surface-rgb: 255 255 255;
+  --apple-surface2-rgb: 245 245 247;
+  --apple-elev-rgb: 255 255 255;
+  --apple-text-rgb: 29 29 31;
+  --apple-dim-rgb: 110 110 115;
+  --apple-blue-rgb: 0 113 227;
+  --apple-blue-hover-rgb: 0 96 194;
+
+  --apple-line: rgba(0, 0, 0, 0.08);
+  --apple-line-strong: rgba(0, 0, 0, 0.18);
+  --apple-tint-a: rgba(0, 0, 0, 0.025);
+  --apple-tint-b: rgba(0, 0, 0, 0.04);
+
+  --icon-invert: none;
+
+  color-scheme: light;
+}
+
+html {
+  background: var(--apple-bg);
+  scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: var(--apple-bg);
+  color: var(--apple-text);
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: var(--apple-blue);
+  color: #ffffff;
 }
 
 @layer utilities {
@@ -31,15 +81,100 @@ body {
     text-wrap: balance;
   }
 
-  .animation-delay-2000 {
-    animation-delay: 2s;
+  .apple-heading {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
   }
-  .animation-delay-3000 {
-    animation-delay: 3s;
+
+  .apple-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--apple-blue);
+    font-weight: 500;
   }
-  .animation-delay-4000 {
-    animation-delay: 4s;
+
+  .apple-dim {
+    color: var(--apple-text-dim);
   }
+
+  .glass {
+    background: rgb(var(--apple-surface-rgb) / 0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid var(--apple-line);
+  }
+
+  .card {
+    background: var(--apple-surface);
+    border: 1px solid var(--apple-line);
+    border-radius: 22px;
+  }
+
+  .btn-primary {
+    background: var(--apple-blue);
+    color: #ffffff;
+    border-radius: 980px;
+    padding: 0.65rem 1.35rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.2;
+    transition: background 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--apple-blue-hover);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--apple-blue);
+    border-radius: 980px;
+    padding: 0.65rem 1.35rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.2;
+    border: 1px solid var(--apple-blue);
+    transition: all 0.2s ease;
+  }
+
+  .btn-ghost:hover {
+    background: var(--apple-blue);
+    color: #ffffff;
+  }
+
+  .shadow-blue-glow {
+    box-shadow: 0 8px 24px rgb(var(--apple-blue-rgb) / 0.35);
+  }
+
+  .scroll-hint {
+    animation: scrollHint 2.2s ease-in-out infinite;
+  }
+
+  .fade-mask-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
+
+@keyframes scrollHint {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
+/* Autofill override — invert light/dark automatically */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--apple-text);
+  -webkit-box-shadow: 0 0 0px 1000px var(--apple-surface) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 @font-face {

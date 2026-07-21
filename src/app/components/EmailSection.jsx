@@ -1,65 +1,57 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 import GithubIcon from "../../../public/github.svg";
 import LinkedInIcon from "../../../public/linkedin.svg";
 
-const EmailSection = () => {
-  const darkMode = useSelector((state) => state.darkMode);
+const inputCls =
+  "w-full bg-apple-surface border border-apple-line-strong rounded-xl px-4 py-3 text-apple-text placeholder:text-apple-dim/70 outline-none focus:border-apple-blue focus:ring-2 focus:ring-apple-blue/30 transition";
 
+const EmailSection = () => {
   const form = useRef();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [cooldown, setCooldown] = useState(false);
 
+  const notify = (kind, message) =>
+    toast[kind](message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
+
   const sendEmail = (e) => {
     e.preventDefault();
 
-    // Check for empty fields
-    const formFields = {
+    const fields = {
       name: form.current.from_name.value,
       email: form.current.from_email.value,
       subject: form.current.subject.value,
       message: form.current.message.value,
     };
 
-    const emptyFields = Object.entries(formFields).filter(([_, value]) => !value.trim());
-
-    if (emptyFields.length > 0) {
-      emptyFields.forEach(([fieldName]) => {
-        toast.warn(`Please enter your ${fieldName}`, {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
+    const empty = Object.entries(fields).filter(([, v]) => !v.trim());
+    if (empty.length) {
+      empty.forEach(([f]) => notify("warn", `Please enter your ${f}`));
       return;
     }
 
     if (isSubmitting || cooldown) {
-      if (cooldown) {
-        toast.warn(
-          "You just sent an email, please wait 1 minute before sending another.",
-          {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          }
+      if (cooldown)
+        notify(
+          "warn",
+          "You just sent an email — please wait a minute before sending another."
         );
-      }
       return;
     }
 
@@ -73,173 +65,160 @@ const EmailSection = () => {
         { publicKey: process.env.NEXT_PUBLIC_EMAILJS_USER_ID }
       )
       .then(
-        (result) => {
-          toast.success("Thank you for reaching out!", {
-            position: "top-center",
-            autoClose: 5000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-          console.log("SUCCESS!", result.text);
-        },
-        (error) => {
-          toast.error(
-            "An error occurred sending your message, please try again",
-            {
-              position: "top-center",
-              autoClose: 5000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            }
-          );
-          console.log("FAILED...", error.text);
-        }
+        () => notify("success", "Thank you for reaching out!"),
+        () =>
+          notify(
+            "error",
+            "An error occurred sending your message, please try again"
+          )
       )
       .finally(() => {
         setIsSubmitting(false);
         setCooldown(true);
-
-        // Set a 1-minute cooldown
-        setTimeout(() => {
-          setCooldown(false);
-        }, 60000);
+        setTimeout(() => setCooldown(false), 60000);
       });
   };
-
-  const textColor = darkMode ? "text-white" : "text-slate-800";
-  const iconColor = darkMode
-    ? "invert(100%) brightness(2)"
-    : "invert(0%) brightness(0)";
-  const barColor = darkMode ? "bg-[#18191E]" : "bg-gray-200";
-  const contentColor = darkMode ? "text-[#ADB7BE]" : "text-gray-700";
-  const placeholderColor = darkMode
-    ? "placeholder-[#9CA2A9]"
-    : "placeholder-gray-400";
 
   return (
     <section
       id="contact"
-      className="grid md:grid-cols-2 my-12 py-24 gap-4 relative"
+      className="py-32 md:py-40 px-6 bg-apple-surface2"
     >
-      <div className="z-10">
-        <h5 className={`text-lg lg:text-xl font-bold my-2 ${textColor}`}>Let's Connect</h5>
-        <p className={`text-sm lg:text-base ${contentColor} mb-4 max-w-md`}>
-          {" "}
-          I’m always open to discussing new opportunities, collaborations, or interesting ideas. 
-          Feel free to reach out — whether you have a question or just want to connect. 
-          I’ll do my best to respond promptly.
-        </p>
-        <div className="socials flex flex-row gap-6">
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://github.com/IanTsung"
-            style={{ filter: `${iconColor}` }}
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Image src={GithubIcon} alt="github icon" width={25} height={25} />
-          </Link>
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/zhaoyancong/"
+            <p className="apple-eyebrow mb-4">Contact</p>
+            <h2 className="apple-heading text-4xl md:text-5xl lg:text-6xl">
+              Let&apos;s make
+              <br />
+              <span className="text-apple-dim">something great.</span>
+            </h2>
+            <p className="mt-6 text-lg text-apple-dim max-w-md leading-relaxed">
+              I&apos;m open to new opportunities, collaborations, or a quick
+              chat. Drop me a note — I&apos;ll do my best to reply promptly.
+            </p>
+            <div className="mt-8 flex items-center gap-5">
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://github.com/IanTsung"
+                className="opacity-80 hover:opacity-100 transition-opacity"
+                aria-label="GitHub"
+              >
+                <Image
+                  src={GithubIcon}
+                  alt=""
+                  width={22}
+                  height={22}
+                  style={{ filter: "var(--icon-invert)" }}
+                />
+              </Link>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/in/zhaoyancong/"
+                className="opacity-80 hover:opacity-100 transition-opacity"
+                aria-label="LinkedIn"
+              >
+                <Image src={LinkedInIcon} alt="" width={22} height={22} />
+              </Link>
+            </div>
+          </motion.div>
+
+          <motion.form
+            ref={form}
+            onSubmit={sendEmail}
+            initial={{ opacity: 0, y: 32 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="card p-8 md:p-10 space-y-5"
           >
-            <Image
-              src={LinkedInIcon}
-              alt="linkedin icon"
-              width={25}
-              height={25}
-            />
-          </Link>
+            <div>
+              <label
+                htmlFor="name"
+                className="block mb-2 text-xs uppercase tracking-widest text-apple-dim"
+              >
+                Name
+              </label>
+              <input
+                type="text"
+                name="from_name"
+                id="name"
+                placeholder="John Doe"
+                className={inputCls}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="email"
+                className="block mb-2 text-xs uppercase tracking-widest text-apple-dim"
+              >
+                Email
+              </label>
+              <input
+                type="email"
+                name="from_email"
+                id="email"
+                placeholder="john@example.com"
+                className={inputCls}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="subject"
+                className="block mb-2 text-xs uppercase tracking-widest text-apple-dim"
+              >
+                Subject
+              </label>
+              <input
+                type="text"
+                name="subject"
+                id="subject"
+                placeholder="Just to say hi"
+                className={inputCls}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="message"
+                className="block mb-2 text-xs uppercase tracking-widest text-apple-dim"
+              >
+                Message
+              </label>
+              <textarea
+                name="message"
+                id="message"
+                rows={5}
+                placeholder="Hi Ian, I'd like to talk about…"
+                className={inputCls}
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`btn-primary w-full sm:w-auto inline-flex justify-center ${
+                isSubmitting ? "opacity-60 cursor-not-allowed" : ""
+              }`}
+            >
+              {isSubmitting ? "Sending…" : "Send message"}
+            </button>
+          </motion.form>
         </div>
-      </div>
-      <div className="z-10">
-        <form ref={form} onSubmit={sendEmail} className="flex flex-col">
-          <div className="mb-6">
-            <label
-              htmlFor="name"
-              className={`block mb-2 text-sm font-medium ${textColor}`}
-            >
-              Your Name
-            </label>
-            <input
-              type="text"
-              name="from_name"
-              id="name"
-              placeholder="John Doe"
-              className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="email"
-              className={`block mb-2 text-sm font-medium ${textColor}`}
-            >
-              Your Email
-            </label>
-            <input
-              type="email"
-              name="from_email"
-              id="email"
-              placeholder="JohnDoe@abc.com"
-              className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
-            />
-          </div>
-          <div className="mb-6">
-            <label
-              htmlFor="subject"
-              className={`block mb-2 text-sm font-medium ${textColor}`}
-            >
-              Subject
-            </label>
-            <input
-              type="text"
-              id="subject"
-              placeholder="Just to say hi"
-              className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
-            />
-          </div>
-          <div className="mb-12">
-            <label
-              htmlFor="message"
-              className={`block mb-2 text-sm font-medium ${textColor}`}
-            >
-              Message
-            </label>
-            <textarea
-              name="message"
-              id="message"
-              rows={5}
-              className={`block w-full p-2.5 ${textColor} text-sm rounded-lg border border-[#33353F] ${placeholderColor} ${barColor}`}
-              placeholder="Hi Ian, I'd like to talk about..."
-            />
-          </div>
-          <button
-            type="submit"
-            className={`bg-gradient-to-r from-blue-500 via-primary-500 to-secondary-500 bg-[length:200%_200%] animate-gradient-shift text-white font-medium py-2.5 px-5 rounded-lg w-full sm:w-1/3 transition-shadow duration-300 hover:shadow-[0_0_24px_rgba(168,85,247,0.5)] ${
-              isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
-        </form>
       </div>
       <ToastContainer
         position="top-center"
         autoClose={5000}
-        hideProgressBar={true}
-        newestOnTop={true}
+        hideProgressBar
+        newestOnTop
         closeOnClick
-        rtl={false}
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
       />
     </section>
   );

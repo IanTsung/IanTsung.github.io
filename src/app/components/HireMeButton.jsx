@@ -1,62 +1,34 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import { useSelector } from "react-redux";
-import { gsap } from "gsap";
-
-const circleText = "Full Stack Developer  Software Engineer  Solutions Architect  ";
+import React, { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { EnvelopeIcon } from "@heroicons/react/24/solid";
 
 const HireMeButton = () => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const circularColor = darkMode ? "text-white" : "text-black";
-  const bgColor = darkMode
-    ? "bg-slate-100 text-black hover:bg-gray-200"
-    : "bg-black text-white hover:bg-gray-700";
-
-  const buttonRef = useRef(null);
-  const circleTextRef = useRef(null);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    if (circleTextRef.current) {
-      gsap.to(circleTextRef.current, {
-        rotation: 360,
-        repeat: -1,
-        duration: 20,
-        ease: "linear",
-      });
-    }
+    const onScroll = () => setShow(window.scrollY > window.innerHeight * 0.6);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <div className="hidden md:flex fixed bottom-5 right-5 sm:bottom-10 sm:right-10 items-center justify-center z-50">
-      <div className="relative flex justify-center items-center">
-        <div ref={circleTextRef} className="absolute">
-          {circleText.split("").map((char, index) => (
-            <span
-              key={index}
-              style={{
-                transform: `rotate(${
-                  (-index * 360) / circleText.length
-                }deg) translateY(34px)`,
-                transformOrigin: "0% 0%",
-              }}
-              className={`absolute text-[8px] font-mono ${circularColor}`}
-            >
-              {char}
-            </span>
-          ))}
-        </div>
-        <a
+    <AnimatePresence>
+      {show && (
+        <motion.a
           href="mailto:zhaoyan.ian.cong@gmail.com"
-          ref={buttonRef}
-          className={`rounded-full transition duration-300 ease-in-out flex items-center justify-center w-16 h-16 ${bgColor}`}
+          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="hidden md:inline-flex fixed bottom-8 right-8 z-40 items-center gap-2 px-5 py-3 rounded-full bg-apple-blue text-white text-sm font-medium shadow-blue-glow hover:bg-apple-blue-hover transition-colors"
         >
-          <span className="text-lg font-bold font-mono text-center leading-tight">
-            HIRE ME
-          </span>
-        </a>
-      </div>
-    </div>
+          <EnvelopeIcon className="w-4 h-4" />
+          Hire me
+        </motion.a>
+      )}
+    </AnimatePresence>
   );
 };
 

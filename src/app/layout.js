@@ -1,33 +1,39 @@
-"use client";
-import { useEffect } from 'react';
-import { Montserrat } from "next/font/google";
-import { Provider } from 'react-redux';
-import { store } from './store';
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 
-const montserrat = Montserrat({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+export const metadata = {
+  title: "Ian Cong — Software. Redefined.",
+  description:
+    "Ian Cong — Full-stack software engineer. Personal portfolio, work, and contact.",
+};
+
+const themeInitScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    var preferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    var theme = stored || preferred;
+    if (theme === 'light') document.documentElement.classList.add('light');
+  } catch (e) {}
+})();
+`;
 
 export default function RootLayout({ children }) {
-
-  useEffect(() => {
-    document.title = 'Home | Ian Cong';
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Ian\'s Personal Home Page');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Ian\'s Personal Home Page';
-      document.head.appendChild(meta);
-    }
-  }, []);
-
   return (
-    <Provider store={store}>
-      <html lang="en">
-        <body className={montserrat.className}>{children}</body>
-      </html>
-    </Provider>
+    <html lang="en" className={inter.variable}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
+      <body className={inter.className}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
   );
 }

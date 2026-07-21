@@ -1,20 +1,13 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
 const Footer = () => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const textColor = darkMode ? "text-white" : "text-slate-950";
-
   return (
-    <footer
-      className={`footer z-10 border border-t-[#33353F] border-l-transparent border-r-transparent ${textColor}`}
-    >
-      <div className="flex justify-center items-center gap-4 md:gap-6 p-12">
-        <span className="font-zolasixx text-xl md:text-2xl">IAN</span>
-        <p className={`text-sm md:text-base ${textColor} font-sans`}>
-          {new Date().getFullYear()} © All rights reserved.
-        </p>
+    <footer className="border-t border-apple-line bg-apple-bg text-apple-dim">
+      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+        <span className="font-zolasixx text-lg tracking-wider text-apple-text">
+          IAN
+        </span>
+        <p>Copyright © {new Date().getFullYear()} Ian Cong. All rights reserved.</p>
       </div>
     </footer>
   );

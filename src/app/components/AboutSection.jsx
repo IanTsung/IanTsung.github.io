@@ -1,100 +1,97 @@
 "use client";
-import { useSelector } from "react-redux";
-import React, { useTransition, useState } from "react";
-import Image from "next/image";
-import TabButton from "./TabButton";
+import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import AchievementsSection from "./AchievementsSection";
 
-const TAB_DATA = [
-  {
-    title: "Education",
-    id: "education",
-    content: (
-      <div>
-        <div className="grid grid-rows-1 md:grid-cols-2">
-          <h3 className="font-semibold row-span-1 md:col-span-1 text-start">
-            Australian National University
-          </h3>
-          <h3 className="font-semibold row-span-1 md:col-span-1 text-start md:text-end">
-            Canberra, Australia
-          </h3>
-        </div>
-        <div className="grid grid-rows-1 md:grid-cols-2">
-          <p className="row-span-1 md:col-span-1 text-start">
-            Master of Computing
-          </p>
-          <p className="row-span-1 md:col-span-1 text-start md:text-end">
-            2023.2 - 2024.12
-          </p>
-        </div>
-      </div>
-    ),
-  },
-  {
-    title: "Certifications",
-    id: "certifications",
-    content: (
-      <ul className="list-disc pl-2 font-medium">
-        <li>AWS Certified Developer - Associate</li>
-        <li>AWS Solutions Architect - Professional (Expected)</li>
-      </ul>
-    ),
-  },
+const CERTIFICATIONS = [
+  { title: "AWS Certified Developer", level: "Associate" },
+  { title: "AWS Solutions Architect", level: "Professional" },
 ];
 
 const AboutSection = () => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const textColor = darkMode ? "text-white" : "text-slate-800";
-
-  const [tab, setTab] = useState("education");
-  const [isPending, startTransition] = useTransition();
-
-  const handleTabChange = (id) => {
-    startTransition(() => {
-      setTab(id);
-    });
-  };
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className={`${textColor}`}>
-      <div className="md:grid lg:grid-cols-2 gap-8 xl:gap-16 items-start py-8 px-4 sm:py-16 xl:px-0">
-        <Image
-          src="/images/about-image.png"
-          className="rounded-2xl"
-          alt="about image"
-          width={500}
-          height={500}
-        />
-        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
-          <h2 className={`text-2xl lg:text-4xl font-bold mb-4 ${textColor}`}>About Me</h2>
-          <p className="text-sm lg:text-lg ">
-            I am a full-stack web developer with a passion for creating
-            interactive and responsive web applications. I have experience
-            working with JavaScript, React, Redux, Node.js, Express, PostgreSQL,
-            MongoDB, HTML, CSS, and Git. I am a quick learner and I am always
-            looking to expand my knowledge and skill set. I am a team player and
-            I am excited to work with others to create amazing applications.
-          </p>
-          <div className="flex flex-row justify-start mt-8 text-sm lg:text-base">
-            <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
-            >
-              {" "}
-              Education{" "}
-            </TabButton>
-            <TabButton
-              selectTab={() => handleTabChange("certifications")}
-              active={tab === "certifications"}
-            >
-              {" "}
-              Certifications{" "}
-            </TabButton>
-          </div>
-          <div className="mt-8 text-sm lg:text-base">
-            {TAB_DATA.find((t) => t.id === tab).content}
-          </div>
+    <section id="about" className="py-32 md:py-40 px-6">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="apple-eyebrow text-center mb-4"
+        >
+          About
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="apple-heading text-center text-4xl md:text-5xl lg:text-6xl mb-6"
+        >
+          Building for the web.
+          <br />
+          <span className="text-apple-dim">Front to back.</span>
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.9, delay: 0.15 }}
+          className="text-center text-lg md:text-xl text-apple-dim max-w-3xl mx-auto"
+        >
+          I&apos;m a full-stack engineer who cares about product craft,
+          scalability, and code that ages well — whether it&apos;s a serverless
+          backend, a React interface, or the seams in between.
+        </motion.p>
+
+        <div className="grid md:grid-cols-2 gap-6 mt-20 max-w-4xl mx-auto">
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="card p-8 md:p-10 flex flex-col"
+          >
+            <p className="apple-eyebrow mb-6">Education</p>
+            <h3 className="apple-heading text-2xl md:text-3xl text-apple-text">
+              Master of Computing
+            </h3>
+            <p className="text-apple-dim mt-2 text-base md:text-lg">
+              Australian National University
+            </p>
+            <div className="mt-auto pt-8 border-t border-apple-line flex items-center justify-between text-xs uppercase tracking-[0.18em] text-apple-dim">
+              <span>Canberra, Australia</span>
+              <span>2023 — 2024</span>
+            </div>
+          </motion.article>
+
+          <motion.article
+            initial={{ opacity: 0, y: 24 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="card p-8 md:p-10 flex flex-col"
+          >
+            <p className="apple-eyebrow mb-6">Certifications</p>
+            <ul className="divide-y divide-apple-line -mt-2">
+              {CERTIFICATIONS.map((c) => (
+                <li key={c.title} className="py-4 first:pt-2">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="apple-heading text-lg md:text-xl text-apple-text">
+                      {c.title}
+                    </h3>
+                    <span className="shrink-0 text-[10px] md:text-xs uppercase tracking-[0.18em] text-apple-dim whitespace-nowrap">
+                      {c.level}
+                    </span>
+                  </div>
+                  <p className="text-apple-dim text-sm mt-1">
+                    Amazon Web Services
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </motion.article>
         </div>
+
+        <AchievementsSection />
       </div>
     </section>
   );

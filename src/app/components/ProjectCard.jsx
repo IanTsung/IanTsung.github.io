@@ -1,43 +1,41 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 
 const ProjectCard = ({ imgUrl, title, description, gitUrl }) => {
-  const darkMode = useSelector((state) => state.darkMode);
-
-  const bgColor = darkMode ? "bg-[#181818]" : "bg-slate-950";
-  const shadeColor = darkMode ? "bg-slate-100" : "bg-slate-500";
-
   return (
-    <div className="relative hover:scale-105 duration-500">
-      <div
-        className="h-48 xs:h-56 sm:h-64 xl:h-72 rounded-t-xl relative group z-10"
-        style={{ background: `url(${imgUrl})`, backgroundSize: "cover" }}
-      ></div>
-      <div
-        className={`relative text-white rounded-b-xl sm:h-40 p-6 z-10 ${bgColor}`}
-      >
-        <h5 className="text-[1rem] sm:text-lg md:text-xl font-semibold mb-2">
-          {title}
-        </h5>
-        <p className="text-sm sm:text-[1rem] md:text-lg text-[#ADB7BE] mr-11">
-          {description}
-        </p>
-        <Link
-          target="_blank"
-          rel="noopener noreferrer"
-          href={gitUrl}
-          className="absolute bottom-5 right-5 rounded-full bg-slate-100 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center"
-        >
-          <ArrowTopRightOnSquareIcon className="w-3 h-3 sm:w-5 sm:h-5 text-[#181818]" />
-        </Link>
+    <Link
+      target="_blank"
+      rel="noopener noreferrer"
+      href={gitUrl}
+      className="group block card overflow-hidden h-full transition-all duration-500 hover:-translate-y-1 hover:border-apple-line-strong"
+    >
+      <div className="relative aspect-[16/10] overflow-hidden bg-apple-elev">
+        <div
+          className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+          style={{
+            background: `url(${imgUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </div>
-      <div
-        className={`absolute bottom-[-10px] right-[-10px] w-[100%] h-[100%] bg-opacity-70 rounded-xl z-0 ${shadeColor}`}
-      />
-    </div>
+      <div className="p-6 flex items-start justify-between gap-4">
+        <div className="min-w-0">
+          <h5 className="text-lg md:text-xl font-semibold text-apple-text truncate">
+            {title}
+          </h5>
+          <p className="mt-1 text-sm text-apple-dim line-clamp-2">
+            {description}
+          </p>
+        </div>
+        <div className="shrink-0 w-9 h-9 rounded-full bg-apple-tint-b border border-apple-line flex items-center justify-center group-hover:bg-apple-blue group-hover:border-apple-blue transition-colors duration-300">
+          <ArrowUpRightIcon className="w-4 h-4 text-apple-text group-hover:text-white transition-colors duration-300" />
+        </div>
+      </div>
+    </Link>
   );
 };
 
