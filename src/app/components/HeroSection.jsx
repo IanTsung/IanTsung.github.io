@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { ArrowDownTrayIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import HeroCanvas from "./HeroCanvas";
+import HeroSpotlight from "./HeroSpotlight";
 
 const HeroSection = () => {
   const { scrollY } = useScroll();
@@ -32,15 +33,18 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle radial glow behind the copy */}
+      {/* Ambient radial glow — always-on base wash */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.14), transparent 70%)",
+            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.10), transparent 70%)",
         }}
       />
+
+      {/* Cursor spotlight — moving pool of light */}
+      <HeroSpotlight />
 
       {/* Interactive dot grid with mouse ripple */}
       <HeroCanvas />
