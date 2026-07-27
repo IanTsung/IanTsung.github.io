@@ -8,6 +8,7 @@ import {
   animate,
 } from "framer-motion";
 import { ArrowDownTrayIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import HeroCanvas from "./HeroCanvas";
 
 const HeroSection = () => {
   const { scrollY } = useScroll();
@@ -40,6 +41,9 @@ const HeroSection = () => {
             "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.14), transparent 70%)",
         }}
       />
+
+      {/* Interactive dot grid with mouse ripple */}
+      <HeroCanvas />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
         <motion.h1
