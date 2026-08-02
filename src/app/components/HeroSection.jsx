@@ -32,29 +32,37 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Scroll-linked AI-generated background video */}
+      {/* Looping AI-generated background video */}
       <HeroVideo />
 
-      {/* Theme-aware readability overlay */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0 bg-apple-bg/55"
-      />
-
-      {/* Subtle radial glow behind the copy */}
+      {/* Text readability vignette — dims only around the copy, edges stay vibrant */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.14), transparent 70%)",
+            "radial-gradient(ellipse 70% 55% at 50% 50%, rgb(var(--apple-bg-rgb) / 0.55) 0%, rgb(var(--apple-bg-rgb) / 0.15) 70%, transparent 100%)",
         }}
       />
 
-      {/* Bottom fade — seamless transition into the next section */}
+      {/* Subtle blue tint behind the copy */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-0 bg-gradient-to-b from-transparent to-apple-bg"
+        className="pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.12), transparent 70%)",
+        }}
+      />
+
+      {/* Bottom fade — smooth transition into the next section */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-56 z-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, rgb(var(--apple-bg-rgb) / 0.5) 55%, rgb(var(--apple-bg-rgb)) 100%)",
+        }}
       />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
