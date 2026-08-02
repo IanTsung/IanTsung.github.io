@@ -51,6 +51,12 @@ const HeroSection = () => {
         }}
       />
 
+      {/* Bottom fade — seamless transition into the next section */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-0 bg-gradient-to-b from-transparent to-apple-bg"
+      />
+
       <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
