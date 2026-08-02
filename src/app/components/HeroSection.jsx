@@ -8,6 +8,7 @@ import {
   animate,
 } from "framer-motion";
 import { ArrowDownTrayIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import HeroVideo from "./HeroVideo";
 
 const HeroSection = () => {
   const { scrollY } = useScroll();
@@ -31,6 +32,15 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Scroll-linked AI-generated background video */}
+      <HeroVideo />
+
+      {/* Theme-aware readability overlay */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 bg-apple-bg/55"
+      />
+
       {/* Subtle radial glow behind the copy */}
       <div
         aria-hidden="true"
