@@ -76,6 +76,25 @@ body {
   color: #ffffff;
 }
 
+/* Locks the Apple palette to light-mode values regardless of the active theme.
+   Use for sections that should always render with the light look (e.g. hero
+   backgrounds where a video defines the mood and we don't want dark-mode
+   overlays crushing colours). */
+.force-light-palette {
+  --apple-bg-rgb: 251 251 253;
+  --apple-surface-rgb: 255 255 255;
+  --apple-surface2-rgb: 245 245 247;
+  --apple-elev-rgb: 255 255 255;
+  --apple-text-rgb: 29 29 31;
+  --apple-dim-rgb: 110 110 115;
+  --apple-blue-rgb: 0 113 227;
+  --apple-blue-hover-rgb: 0 96 194;
+  --apple-line: rgba(0, 0, 0, 0.08);
+  --apple-line-strong: rgba(0, 0, 0, 0.18);
+  --apple-tint-a: rgba(0, 0, 0, 0.025);
+  --apple-tint-b: rgba(0, 0, 0, 0.04);
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

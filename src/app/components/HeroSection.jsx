@@ -38,7 +38,7 @@ const HeroSection = () => {
       {/* Text readability vignette — dims only around the copy, edges stay vibrant */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
+        className="force-light-palette pointer-events-none absolute inset-0 z-0"
         style={{
           background:
             "radial-gradient(ellipse 70% 55% at 50% 50%, rgb(var(--apple-bg-rgb) / 0.55) 0%, rgb(var(--apple-bg-rgb) / 0.15) 70%, transparent 100%)",
@@ -48,14 +48,14 @@ const HeroSection = () => {
       {/* Subtle blue tint behind the copy */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
+        className="force-light-palette pointer-events-none absolute inset-0 z-0"
         style={{
           background:
             "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.12), transparent 70%)",
         }}
       />
 
-      {/* Bottom fade — smooth transition into the next section */}
+      {/* Bottom fade — theme-adaptive so it blends into the next section */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-56 z-0"
@@ -65,7 +65,7 @@ const HeroSection = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
+      <div className="force-light-palette relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
