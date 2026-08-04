@@ -60,10 +60,10 @@ const HeroSection = () => {
           final ~25% ramps hard to the next-section bg for a clean seam. */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 z-0"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 z-0"
         style={{
           background:
-            "linear-gradient(to bottom, transparent 0%, transparent 45%, rgb(var(--apple-bg-rgb) / 0.3) 75%, rgb(var(--apple-bg-rgb)) 100%)",
+            "linear-gradient(to bottom, transparent 0%, transparent 45%, rgb(var(--apple-bg-rgb) / 0.2) 75%, rgb(var(--apple-bg-rgb)) 100%)",
         }}
       />
 
