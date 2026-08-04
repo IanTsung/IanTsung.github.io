@@ -8,6 +8,7 @@ import {
   animate,
 } from "framer-motion";
 import { ArrowDownTrayIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import HeroVideo from "./HeroVideo";
 
 const HeroSection = () => {
   const { scrollY } = useScroll();
@@ -31,17 +32,42 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Subtle radial glow behind the copy */}
+      {/* Looping AI-generated background video */}
+      <HeroVideo />
+
+      {/* Text readability vignette — dims only around the copy, edges stay vibrant */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-0"
+        className="force-light-palette pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.14), transparent 70%)",
+            "radial-gradient(ellipse 70% 55% at 50% 50%, rgb(var(--apple-bg-rgb) / 0.55) 0%, rgb(var(--apple-bg-rgb) / 0.15) 70%, transparent 100%)",
         }}
       />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
+      {/* Subtle blue tint behind the copy */}
+      <div
+        aria-hidden="true"
+        className="force-light-palette pointer-events-none absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 40% at 50% 55%, rgb(var(--apple-blue-rgb) / 0.12), transparent 70%)",
+        }}
+      />
+
+      {/* Bottom fade — theme-adaptive so it blends into the next section.
+          Kept mostly transparent so it doesn't overpower the video; only the
+          final ~25% ramps hard to the next-section bg for a clean seam. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 z-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, transparent 0%, transparent 45%, rgb(var(--apple-bg-rgb) / 0.2) 75%, rgb(var(--apple-bg-rgb)) 100%)",
+        }}
+      />
+
+      <div className="force-light-palette relative z-10 max-w-6xl mx-auto px-6 pt-32 pb-24 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -94,15 +120,17 @@ const HeroSection = () => {
             <ArrowDownTrayIcon className="w-4 h-4" />
           </a>
         </motion.div>
-
-        <motion.div
-          style={{ opacity: hintOpacity, y: scrollTranslateY }}
-          className="mt-24 hidden md:flex flex-col items-center gap-2 text-apple-dim"
-        >
-          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
-          <ChevronDownIcon className="w-4 h-4 scroll-hint" />
-        </motion.div>
       </div>
+
+      {/* Scroll hint — sits outside the force-light-palette scope so its
+          colour tracks the actual theme and stays readable over the fade. */}
+      <motion.div
+        style={{ opacity: hintOpacity, y: scrollTranslateY }}
+        className="absolute inset-x-0 bottom-10 z-20 hidden md:flex flex-col items-center gap-2 text-apple-dim pointer-events-none"
+      >
+        <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+        <ChevronDownIcon className="w-4 h-4 scroll-hint" />
+      </motion.div>
     </section>
   );
 };
