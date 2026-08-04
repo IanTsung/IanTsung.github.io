@@ -118,15 +118,17 @@ const HeroSection = () => {
             <ArrowDownTrayIcon className="w-4 h-4" />
           </a>
         </motion.div>
-
-        <motion.div
-          style={{ opacity: hintOpacity, y: scrollTranslateY }}
-          className="mt-24 hidden md:flex flex-col items-center gap-2 text-apple-dim"
-        >
-          <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
-          <ChevronDownIcon className="w-4 h-4 scroll-hint" />
-        </motion.div>
       </div>
+
+      {/* Scroll hint — sits outside the force-light-palette scope so its
+          colour tracks the actual theme and stays readable over the fade. */}
+      <motion.div
+        style={{ opacity: hintOpacity, y: scrollTranslateY }}
+        className="absolute inset-x-0 bottom-10 z-20 hidden md:flex flex-col items-center gap-2 text-apple-dim pointer-events-none"
+      >
+        <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+        <ChevronDownIcon className="w-4 h-4 scroll-hint" />
+      </motion.div>
     </section>
   );
 };
