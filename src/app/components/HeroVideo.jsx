@@ -4,6 +4,7 @@ import React from "react";
 const HeroVideo = () => (
   <video
     src="/videos/hero-background.mp4"
+    poster="/videos/hero-poster.jpg"
     autoPlay
     loop
     muted

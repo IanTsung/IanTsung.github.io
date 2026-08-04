@@ -30,6 +30,20 @@ export default function RootLayout({ children }) {
     <html lang="en" className={inter.variable}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* Hint browsers to fetch hero assets ASAP, so the video (or poster)
+            appears without the black/white gap on first load. */}
+        <link
+          rel="preload"
+          as="image"
+          href="/videos/hero-poster.jpg"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/hero-background.mp4"
+          type="video/mp4"
+        />
       </head>
       <body className={inter.className}>
         <ThemeProvider>{children}</ThemeProvider>
