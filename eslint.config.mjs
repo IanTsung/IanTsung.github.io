@@ -11,6 +11,6 @@ export default [
     },
   },
   {
-    ignores: [".next/**", "out/**", "node_modules/**", "public/**"],
+    ignores: [".next/**", "out/**", "node_modules/**", "public/**", "worker/node_modules/**", "worker/.wrangler/**"],
   },
 ];

@@ -2,27 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import ExperienceCard from "./ExperienceCard";
-
-const experiences = [
-  {
-    title: "Back End Developer",
-    company: "Viva Leisure",
-    companyIcon: "/work/viva_leisure.jpg",
-    duration: "Oct 2024 — Present",
-    description:
-      "Serverless backend engineering with AWS CDK and TypeScript. Building the platform behind Australia's fastest-growing health clubs.",
-    skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
-  },
-  {
-    title: "Research Assistant",
-    company: "Mandala Partners",
-    companyIcon: "/work/mandala_partners.jpg",
-    duration: "Feb 2024 — Jun 2024",
-    description:
-      "Built a zero-shot learning tool for economic analysis of corporate documents on AWS SageMaker.",
-    skills: ["AWS SageMaker", "Python", "NLP", "Zero-shot Learning"],
-  },
-];
+import { experiences } from "../../data/profile";
 
 const ExperienceSection = () => {
   const ref = useRef(null);

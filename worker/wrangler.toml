@@ -1,0 +1,20 @@
+name = "ian-ai-twin"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+preview_urls = false
+
+[vars]
+MODEL = "gpt-6-luna"
+# Optional: EFFORT = "low" sets reasoning.effort, if the model supports it.
+ALLOWED_ORIGINS = "https://iantsung.github.io,http://localhost:3000"
+
+# Per-IP limit. OPENAI_API_KEY is a secret: `npx wrangler secret put OPENAI_API_KEY`
+[[ratelimits]]
+name = "CHAT_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 5
+  period = 60

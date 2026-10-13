@@ -1,0 +1,16 @@
+{
+  "name": "ian-ai-twin",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.150.0"
+  },
+  "dependencies": {
+    "openai": "^7.32.0"
+  }
+}
