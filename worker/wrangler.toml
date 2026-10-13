@@ -4,11 +4,11 @@ compatibility_date = "2026-09-01"
 compatibility_flags = ["nodejs_compat"]
 
 [vars]
-MODEL = "claude-opus-5-5"
-EFFORT = "low"
+MODEL = "gpt-6-luna"
+# Optional: EFFORT = "low" sets reasoning.effort, if the model supports it.
 ALLOWED_ORIGINS = "https://iantsung.github.io,http://localhost:3000"
 
-# Per-IP limit. ANTHROPIC_API_KEY is a secret: `npx wrangler secret put ANTHROPIC_API_KEY`
+# Per-IP limit. OPENAI_API_KEY is a secret: `npx wrangler secret put OPENAI_API_KEY`
 [[ratelimits]]
 name = "CHAT_LIMITER"
 namespace_id = "1001"

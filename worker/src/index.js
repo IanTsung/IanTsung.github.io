@@ -1,4 +1,4 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { isAllowedOrigin, parseAllowedOrigins, sanitizeMessages } from "./guard.js";
 import { SYSTEM_PROMPT } from "./persona.js";
 
@@ -67,44 +67,38 @@ async function streamReply(env, messages, writable) {
   const writer = writable.getWriter();
   const encoder = new TextEncoder();
   let wroteText = false;
+  let refused = false;
 
   try {
-    const client = new Anthropic({ apiKey: env.ANTHROPIC_API_KEY });
-    const params = {
+    const client = new OpenAI({ apiKey: env.OPENAI_API_KEY });
+    const stream = await client.responses.create({
       model: env.MODEL,
-      // Answers are a few sentences; the cap bounds cost per request (thinking included).
-      max_tokens: 2048,
-      output_config: { effort: env.EFFORT },
-      cache_control: { type: "ephemeral" },
-      system: SYSTEM_PROMPT,
-      messages,
-    };
-
-    // Haiku has no server-side refusal fallback; every other current model does.
-    const stream = env.MODEL.startsWith("claude-haiku")
-      ? client.messages.stream(params)
-      : client.beta.messages.stream({
-          ...params,
-          betas: ["server-side-fallback-2026-07-01"],
-          fallbacks: "default",
-        });
+      instructions: SYSTEM_PROMPT,
+      input: messages,
+      // Answers are a few sentences; the cap bounds cost per request (reasoning included).
+      max_output_tokens: 2048,
+      ...(env.EFFORT ? { reasoning: { effort: env.EFFORT } } : {}),
+      store: false,
+      stream: true,
+    });
 
     for await (const event of stream) {
-      if (event.type === "content_block_delta" && event.delta.type === "text_delta") {
-        await writer.write(encoder.encode(event.delta.text));
+      if (event.type === "response.output_text.delta") {
+        await writer.write(encoder.encode(event.delta));
         wroteText = true;
+      } else if (event.type === "response.refusal.delta") {
+        refused = true;
+      } else if (event.type === "response.failed" || event.type === "error") {
+        console.error("OpenAI stream failed", JSON.stringify(event));
       }
     }
 
-    const final = await stream.finalMessage();
-    if (final.stop_reason === "refusal" && !wroteText) {
-      await writer.write(encoder.encode(REFUSAL_REPLY));
-    }
+    if (!wroteText) await writer.write(encoder.encode(refused ? REFUSAL_REPLY : ERROR_REPLY));
   } catch (err) {
-    if (err instanceof Anthropic.RateLimitError) {
-      console.error("Anthropic rate limit hit", err.status);
-    } else if (err instanceof Anthropic.APIError) {
-      console.error(`Anthropic API error ${err.status}:`, err.message);
+    if (err instanceof OpenAI.RateLimitError) {
+      console.error("OpenAI rate limit hit", err.status);
+    } else if (err instanceof OpenAI.APIError) {
+      console.error(`OpenAI API error ${err.status}:`, err.message);
     } else {
       console.error("Unexpected error", err);
     }

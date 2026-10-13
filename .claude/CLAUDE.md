@@ -107,24 +107,24 @@ Client-side only. EmailJS API keys are in the bundle by design — front-end can
 
 ## AI twin (v2 only)
 
-Chat widget that answers visitor questions as Ian, powered by Claude via a Cloudflare Worker proxy (the API key must never ship in the static bundle).
+Chat widget that answers visitor questions as Ian, powered by OpenAI (Responses API) via a Cloudflare Worker proxy (the API key must never ship in the static bundle).
 
 ```
-ChatWidget.jsx ──POST /chat (plain-text stream)──▶ worker/ (Cloudflare) ──▶ Claude API
+ChatWidget.jsx ──POST /chat (plain-text stream)──▶ worker/ (Cloudflare) ──▶ OpenAI API
 ```
 
 - **Content source of truth:** `src/data/profile.js`. Section components render it; `src/data/profile-context.js` turns it into the twin's knowledge base. Update facts there, then redeploy **both** site and Worker.
 - **Persona / rules:** `worker/src/persona.js`. System prompt must stay static (no dates/IDs) to keep prompt caching effective.
-- **Guards:** `worker/src/guard.js` (origin allowlist, message validation, history trimming — tested) + Cloudflare rate-limit binding (5 req/min/IP) in `worker/wrangler.toml`. Also set a monthly spend limit in the Anthropic Console.
-- **Model:** `MODEL` / `EFFORT` vars in `wrangler.toml`.
+- **Guards:** `worker/src/guard.js` (origin allowlist, message validation, history trimming — tested) + Cloudflare rate-limit binding (5 req/min/IP) in `worker/wrangler.toml`. Also set a monthly spend limit in the OpenAI dashboard.
+- **Model:** `MODEL` (and optional `EFFORT` → `reasoning.effort`) vars in `wrangler.toml`.
 - **Deploy Worker** (manual, separate from Pages):
   ```bash
   cd worker && npm ci
   npx wrangler login                          # once
-  npx wrangler secret put ANTHROPIC_API_KEY   # once
+  npx wrangler secret put OPENAI_API_KEY      # once
   npx wrangler deploy
   ```
-- **Local dev:** put `ANTHROPIC_API_KEY=...` in `worker/.dev.vars` (gitignored), `cd worker && npm run dev` (port 8787), and set `NEXT_PUBLIC_CHAT_ENDPOINT=http://localhost:8787/chat` in `.env.local`.
+- **Local dev:** put `OPENAI_API_KEY=...` in `worker/.dev.vars` (gitignored), `cd worker && npm run dev` (port 8787), and set `NEXT_PUBLIC_CHAT_ENDPOINT=http://localhost:8787/chat` in `.env.local`.
 
 ## Theme system (v2)
 
