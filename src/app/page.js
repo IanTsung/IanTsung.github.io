@@ -3,7 +3,6 @@ import "devicon/devicon.min.css";
 import HeroSection from "./components/HeroSection";
 import NavBar from "./components/NavBar";
 import AboutSection from "./components/AboutSection";
-import HireMeButton from "./components/HireMeButton";
 import ProjectsSection from "./components/ProjectsSection";
 import EmailSection from "./components/EmailSection";
 import Footer from "./components/Footer";
@@ -25,7 +24,6 @@ export default function Home() {
       <ProjectsSection />
       <EmailSection />
       <Footer />
-      <HireMeButton />
       <ChatWidget />
     </main>
   );
