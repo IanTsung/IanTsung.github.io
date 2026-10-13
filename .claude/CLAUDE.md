@@ -15,7 +15,7 @@ Three long-lived branches:
 
 | Branch | Contents | Notes |
 |---|---|---|
-| `main` | **Deploy config only** — `.github/workflows/*` | No application code. Direct commits allowed. |
+| `main` | **Deploy config only** — `.github/workflows/*` | No application code. Changes via PR (branch protection enforced). |
 | `v1` | Classic version (frozen) | Only touch for maintenance. |
 | `v2` | Apple redesign — dark/light theme, current active version | Where new features land. |
 
@@ -24,10 +24,11 @@ Working branches:
 - `fix/v2-<slug>` for bug fixes
 - `chore/v2-<slug>` for tooling / config
 - Same pattern for `v1` (rare)
+- `chore/main-<slug>` for deploy/workflow changes on `main`
 
 ## How to make a change
 
-**Never commit directly to `v1` or `v2`.** Use feature branches + PR + squash-merge.
+**Never commit directly to `main`, `v1` or `v2`.** Use feature branches + PR + squash-merge.
 
 ```bash
 git checkout v2
@@ -45,7 +46,7 @@ gh pr create --base v2 --title "..." --body "..."
 - **PR body:** what changed + why. Auto-linked to any related issues.
 - After merge, delete the feature branch (locally + on GitHub).
 
-`main` is different — it holds only CI/deploy config, so direct commits are fine for hotfixing workflows.
+`main` follows the same flow, branching from `main` and opening the PR with `--base main`. A ruleset on GitHub requires PRs for `main`. An admin push gets through with a "Bypassed rule violations" warning, but that bypass is not part of the normal flow, so use a PR even for one-line workflow fixes. `ci.yml` only runs on PRs to `v1`/`v2`, so workflow PRs on `main` have no automated checks. Review the YAML diff by hand.
 
 ## Deployment
 
