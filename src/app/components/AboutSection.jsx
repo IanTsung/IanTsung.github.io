@@ -2,11 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import AchievementsSection from "./AchievementsSection";
-
-const CERTIFICATIONS = [
-  { title: "AWS Certified Developer", level: "Associate" },
-  { title: "AWS Solutions Architect", level: "Professional" },
-];
+import { certifications, education } from "../../data/profile";
 
 const AboutSection = () => {
   const ref = useRef(null);
@@ -53,14 +49,14 @@ const AboutSection = () => {
           >
             <p className="apple-eyebrow mb-6">Education</p>
             <h3 className="apple-heading text-2xl md:text-3xl text-apple-text">
-              Master of Computing
+              {education.degree}
             </h3>
             <p className="text-apple-dim mt-2 text-base md:text-lg">
-              Australian National University
+              {education.school}
             </p>
             <div className="mt-auto pt-8 border-t border-apple-line flex items-center justify-between text-xs uppercase tracking-[0.18em] text-apple-dim">
-              <span>Canberra, Australia</span>
-              <span>2023 — 2024</span>
+              <span>{education.location}</span>
+              <span>{education.period}</span>
             </div>
           </motion.article>
 
@@ -72,7 +68,7 @@ const AboutSection = () => {
           >
             <p className="apple-eyebrow mb-6">Certifications</p>
             <ul className="divide-y divide-apple-line -mt-2">
-              {CERTIFICATIONS.map((c) => (
+              {certifications.map((c) => (
                 <li key={c.title} className="py-4 first:pt-2">
                   <div className="flex items-baseline justify-between gap-4">
                     <h3 className="apple-heading text-lg md:text-xl text-apple-text">
@@ -83,7 +79,7 @@ const AboutSection = () => {
                     </span>
                   </div>
                   <p className="text-apple-dim text-sm mt-1">
-                    Amazon Web Services
+                    {c.issuer}
                   </p>
                 </li>
               ))}

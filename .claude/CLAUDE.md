@@ -82,7 +82,7 @@ npm run build        # static export → ./out
 - Framework: **Vitest**.
 - Test files co-located with source: `foo.test.js` next to `foo.js`.
 - Convention: pure logic modules get unit tests. React component behaviour tested via extracted logic modules (avoid DOM/renderer overhead).
-- Current suite: `src/app/components/contact-guard.test.js` — 20 tests covering the contact form anti-abuse module.
+- Suites: `contact-guard.test.js` (contact form anti-abuse), `chat-client.test.js` (chat widget logic), `src/data/profile-context.test.js`, `worker/src/guard.test.js` (Worker request validation). `vitest.config.js` includes `worker/src/**`.
 
 ## Environment variables
 
@@ -93,6 +93,7 @@ All prefixed `NEXT_PUBLIC_` so they're bundled into the static export.
 | `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | EmailJS service identifier |
 | `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | EmailJS template identifier |
 | `NEXT_PUBLIC_EMAILJS_USER_ID` | EmailJS public key |
+| `NEXT_PUBLIC_CHAT_ENDPOINT` | AI twin Worker URL (`https://<worker>.workers.dev/chat`). Unset → chat widget hidden. Not secret. |
 
 Set as **GitHub Actions secrets** for build time. Set in local `.env.local` for dev.
 
@@ -103,6 +104,27 @@ Set as **GitHub Actions secrets** for build time. Set in local `.env.local` for 
 - `isHoneypotTriggered` — checks a hidden `website` input off-screen. Bots often auto-fill it; silently drop those submissions.
 
 Client-side only. EmailJS API keys are in the bundle by design — front-end can never fully prevent motivated abuse. For a real anti-abuse layer, add EmailJS Dashboard domain allowlist + eventually a serverless proxy.
+
+## AI twin (v2 only)
+
+Chat widget that answers visitor questions as Ian, powered by Claude via a Cloudflare Worker proxy (the API key must never ship in the static bundle).
+
+```
+ChatWidget.jsx ──POST /chat (plain-text stream)──▶ worker/ (Cloudflare) ──▶ Claude API
+```
+
+- **Content source of truth:** `src/data/profile.js`. Section components render it; `src/data/profile-context.js` turns it into the twin's knowledge base. Update facts there, then redeploy **both** site and Worker.
+- **Persona / rules:** `worker/src/persona.js`. System prompt must stay static (no dates/IDs) to keep prompt caching effective.
+- **Guards:** `worker/src/guard.js` (origin allowlist, message validation, history trimming — tested) + Cloudflare rate-limit binding (5 req/min/IP) in `worker/wrangler.toml`. Also set a monthly spend limit in the Anthropic Console.
+- **Model:** `MODEL` / `EFFORT` vars in `wrangler.toml`.
+- **Deploy Worker** (manual, separate from Pages):
+  ```bash
+  cd worker && npm ci
+  npx wrangler login                          # once
+  npx wrangler secret put ANTHROPIC_API_KEY   # once
+  npx wrangler deploy
+  ```
+- **Local dev:** put `ANTHROPIC_API_KEY=...` in `worker/.dev.vars` (gitignored), `cd worker && npm run dev` (port 8787), and set `NEXT_PUBLIC_CHAT_ENDPOINT=http://localhost:8787/chat` in `.env.local`.
 
 ## Theme system (v2)
 
@@ -122,6 +144,9 @@ CLAUDE.md                              ← (optional root shim if you add one)
 src/app/components/                    ← React components
 src/app/components/contact-guard.js    ← anti-abuse logic + tests
 src/app/components/ThemeProvider.jsx   ← theme context
+src/app/components/ChatWidget.jsx      ← AI twin UI (+ chat-client.js logic/tests)
+src/data/profile.js                    ← portfolio content, shared with AI twin
+worker/                                ← Cloudflare Worker proxy for AI twin
 src/app/globals.css                    ← CSS vars, theme tokens
 tailwind.config.js                     ← Tailwind + Apple palette
 eslint.config.mjs                      ← ESLint 9 flat config

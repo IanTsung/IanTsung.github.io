@@ -9,6 +9,7 @@ import EmailSection from "./components/EmailSection";
 import Footer from "./components/Footer";
 import SkillsSection from "./components/SkillsSection";
 import ExperienceSection from "./components/ExperienceSection";
+import ChatWidget from "./components/ChatWidget";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <EmailSection />
       <Footer />
       <HireMeButton />
+      <ChatWidget />
     </main>
   );
 }
