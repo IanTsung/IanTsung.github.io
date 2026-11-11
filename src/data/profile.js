@@ -25,6 +25,15 @@ export const experiences = [
     skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
   },
   {
+    title: "Full Stack Developer",
+    company: "Qixin Co Pty Ltd",
+    companyIcon: "/work/qixin.png",
+    duration: "Sep 2024 — Oct 2024",
+    description:
+      "Led both backend and frontend development with React, Express.js and Firebase.",
+    skills: ["React", "Express.js", "Firebase", "Redux"],
+  },
+  {
     title: "Research Assistant",
     company: "Mandala Partners",
     companyIcon: "/work/mandala_partners.jpg",

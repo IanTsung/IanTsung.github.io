@@ -28,7 +28,7 @@ const ExperienceSection = () => {
           Where I&apos;ve been
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {experiences.map((exp, i) => (
             <motion.div
               key={exp.company}
