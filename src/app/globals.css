@@ -200,3 +200,40 @@ textarea:-webkit-autofill {
   font-family: 'zolasixx';
   src: url('/fonts/Zolasixx-Regular.otf') format('opentype');
 }
+
+/* Experience carousel (react-slick) — equal-height slides + themed dots */
+.experience-slider .slick-track {
+  display: flex;
+}
+.experience-slider .slick-slide {
+  height: auto;
+}
+.experience-slider .slick-slide > div {
+  height: 100%;
+}
+.experience-slider .slick-slide > div > div {
+  height: 100%;
+}
+.experience-slider .slick-dots {
+  display: flex !important;
+  justify-content: center;
+  gap: 10px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.experience-slider .slick-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  font-size: 0;
+  background: var(--apple-line-strong);
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+.experience-slider .slick-dots .slick-active button {
+  width: 24px;
+  background: var(--apple-text);
+}

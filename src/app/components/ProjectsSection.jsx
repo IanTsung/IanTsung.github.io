@@ -7,11 +7,12 @@ import ProjectTag from "./ProjectTag";
 const projectsData = [
   {
     id: 1,
-    title: "React Weather App",
-    gitUrl: "https://github.com/IanTsung1999/weather-app",
-    description: "A responsive weather application built with React.js.",
-    image: "/images/projects/weather-app.png",
-    tag: ["All", "Web"],
+    title: "Qixin Web App",
+    gitUrl: "https://qixin.com.au/",
+    description:
+      "A real estate platform for building your dream home or collaborating with experts.",
+    image: "/images/projects/Qixin.png",
+    tag: ["All", "Web", "Mobile"],
   },
   {
     id: 2,
@@ -23,6 +24,14 @@ const projectsData = [
   },
   {
     id: 3,
+    title: "React Weather App",
+    gitUrl: "https://github.com/IanTsung1999/weather-app",
+    description: "A responsive weather application built with React.js.",
+    image: "/images/projects/weather-app.png",
+    tag: ["All", "Web"],
+  },
+  {
+    id: 4,
     title: "React Weather App",
     gitUrl: "https://github.com/IanTsung1999/weather-app",
     description: "A responsive weather application built with React.js.",
