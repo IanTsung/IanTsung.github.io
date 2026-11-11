@@ -1,8 +1,27 @@
 "use client";
+import "slick-carousel/slick/slick.css";
 import React, { useRef } from "react";
+import Slider from "react-slick";
 import { motion, useInView } from "framer-motion";
 import ExperienceCard from "./ExperienceCard";
 import { experiences } from "../../data/profile";
+
+// Auto-rotating carousel (as on v1): 2 cards on desktop, 1 below lg.
+const sliderSettings = {
+  infinite: true,
+  speed: 800,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  pauseOnHover: true,
+  arrows: false,
+  dots: true,
+  swipeToSlide: true,
+  slidesToShow: 2,
+  slidesToScroll: 1,
+  responsive: [
+    { breakpoint: 1024, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+  ],
+};
 
 const ExperienceSection = () => {
   const ref = useRef(null);
@@ -28,22 +47,20 @@ const ExperienceSection = () => {
           Where I&apos;ve been
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, y: 32 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 0.8,
-                delay: 0.15 + i * 0.12,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-            >
-              <ExperienceCard {...exp} />
-            </motion.div>
-          ))}
-        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="experience-slider -mx-3"
+        >
+          <Slider {...sliderSettings}>
+            {experiences.map((exp) => (
+              <div key={exp.company} className="px-3 py-2">
+                <ExperienceCard {...exp} />
+              </div>
+            ))}
+          </Slider>
+        </motion.div>
       </div>
     </section>
   );

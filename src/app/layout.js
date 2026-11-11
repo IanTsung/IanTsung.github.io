@@ -27,7 +27,9 @@ const themeInitScript = `
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={inter.variable}>
+    // themeInitScript adds `.light` before hydration (FOUC guard), so the
+    // className intentionally differs from the server HTML.
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {/* Hint browsers to fetch hero assets ASAP, so the video (or poster)
