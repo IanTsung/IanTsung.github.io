@@ -25,6 +25,15 @@ const projectsData = [
   },
   {
     id: 3,
+    title: "Drinkinn AI",
+    gitUrl: "https://www.drinkinnai.com",
+    description:
+      "AI beverage-tracking app: snap a drink, get ingredients and nutrition.",
+    image: "/images/projects/drinkinn.jpg",
+    tag: ["All", "Mobile"],
+  },
+  {
+    id: 4,
     title: "Qixin Web App",
     gitUrl: "https://qixin.com.au/",
     description:
