@@ -12,26 +12,12 @@ const ExperienceCard = ({
   return (
     <article className="card p-8 md:p-10 h-full flex flex-col group transition-transform duration-500 hover:-translate-y-1">
       <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-2xl overflow-hidden bg-apple-elev shrink-0 flex items-center justify-center">
-          {companyIcon ? (
-            <img
-              src={companyIcon}
-              alt={`${company} logo`}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <span
-              aria-hidden="true"
-              className="text-lg font-semibold text-apple-text"
-            >
-              {company
-                .split(/\s+/)
-                .map((w) => w[0])
-                .join("")
-                .slice(0, 2)
-                .toUpperCase()}
-            </span>
-          )}
+        <div className="w-14 h-14 rounded-2xl overflow-hidden bg-apple-elev shrink-0">
+          <img
+            src={companyIcon}
+            alt={`${company} logo`}
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="min-w-0">
           <h3 className="text-lg md:text-xl font-semibold text-apple-text truncate">
