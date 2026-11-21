@@ -25,6 +25,15 @@ export const experiences = [
     skills: ["AWS CDK", "TypeScript", "Serverless", "DynamoDB"],
   },
   {
+    title: "AI Product Engineer",
+    company: "Drinkinn AI",
+    companyIcon: "/work/drinkinn.png",
+    duration: "Aug 2026 — Present",
+    description:
+      "AI features for a beverage-tracking app: multi-image ingredient recognition (OCR + vision-language model) and a cost-bounded LLM product-classification pipeline.",
+    skills: ["LLMs", "OCR", "Redis", "React Native"],
+  },
+  {
     title: "Full Stack Developer",
     company: "Qixin Co Pty Ltd",
     companyIcon: "/work/qixin.png",
